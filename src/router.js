@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomePage from "./pages/Home.vue";
-import AdvancedSearch from "./pages/AdvancedSearch";
+import AdvancedSearch from "./pages/AdvancedSearch.vue";
 import ApartmentIndex from "./pages/Apartment/Index.vue";
 import ApartmentShow from "./pages/Apartment/Show.vue";
 import SendMessage from "./pages/Message.vue"
