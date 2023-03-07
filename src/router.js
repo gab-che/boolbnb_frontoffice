@@ -3,6 +3,7 @@ import HomePage from "./pages/Home.vue";
 import AdvancedSearch from "./pages/AdvancedSearch";
 import ApartmentIndex from "./pages/Apartment/Index.vue";
 import ApartmentShow from "./pages/Apartment/Show.vue";
+import SendMessage from "./pages/Message.vue"
 const router = createRouter({
     history: createWebHistory(),
     routes: [
@@ -25,6 +26,11 @@ const router = createRouter({
             path: "/appartamenti",
             name:"apartments.index",
             component: ApartmentIndex
+        },
+        {
+            path: "/messaggio",
+            name:"message",
+            component: SendMessage
         }
 
     ]
