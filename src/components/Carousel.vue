@@ -1,14 +1,20 @@
 <template>
-  <div class="carousel mx-auto">
-    <div class="inner" ref="inner" :style="innerStyles">
-      <div class="card" v-for="card in cards" :key="card">
-        {{ card }}
+  <div
+    class="container-fluid"
+    @mouseover="transitioning = true"
+    @mouseleave="transitioning = false"
+  >
+    <div class="carousel mx-auto">
+      <div class="inner" ref="inner" :style="innerStyles">
+        <div class="card" v-for="card in cards" :key="card">
+          {{ card }}
+        </div>
       </div>
     </div>
-  </div>
-  <div class="btn-container text-center">
-    <button class="btn btn-primary btn-sm" @click="prev">prev</button>
-    <button class="btn btn-primary btn-sm" @click="next">next</button>
+    <div class="btn-container text-center">
+      <button class="btn btn-primary btn-sm" @click="prev">prev</button>
+      <button class="btn btn-primary btn-sm" @click="next">next</button>
+    </div>
   </div>
 </template>
 
@@ -26,6 +32,7 @@ export default {
   mounted() {
     this.setStep();
     this.resetTranslate();
+    this.defaultNext();
   },
 
   methods: {
@@ -48,6 +55,22 @@ export default {
         this.resetTranslate();
         this.transitioning = false;
       });
+    },
+    defaultNext() {
+      setInterval(() => {
+        if (this.transitioning) return;
+
+        this.transitioning = true;
+
+        this.moveLeft();
+
+        this.afterTransition(() => {
+          const card = this.cards.shift();
+          this.cards.push(card);
+          this.resetTranslate();
+          this.transitioning = false;
+        });
+      }, 3000);
     },
 
     prev() {
