@@ -9,12 +9,24 @@ export const store = reactive({
     allApartments: [],
     sponsoredApartments: [],
     singleApartment: {},
+
+    currentPage: 1,
+    totalPages: 1,
 });
 
-export function fetchAllApartments() {
-    axios.get(store.backendApartments)
+/**
+ * Restituisce appartamenti paginati
+ */
+export function fetchAllApartments(query) {
+    axios.get(store.backendApartments, {
+        params: {
+            ...query,
+        }
+    })
         .then((resp) => {
-            store.allApartments = resp.data;
+            store.allApartments = resp.data.data;
+            store.currentPage = resp.data.current_page;
+            store.totalPages = resp.data.last_page;
         })
 };
 
@@ -22,5 +34,17 @@ export function fetchSingleApartment(id) {
     axios.get(store.backendApartments + id)
         .then((resp) => {
             store.singleApartment = resp.data;
+        })
+}
+
+export function fetchSponsoredApartments() {
+    axios.get(store.backendApartments, {
+        params: {
+            sponsored: true,
+        }
+    })
+        .then((resp) => {
+            store.sponsoredApartments = resp.data;
+            console.log(resp.data);
         })
 }

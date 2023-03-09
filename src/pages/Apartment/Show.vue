@@ -4,7 +4,7 @@ export default{
     name: "ApartmentShow",
     data(){
         return{
-            apartment: store.singleApartment,
+            store,
             
         }
     },
