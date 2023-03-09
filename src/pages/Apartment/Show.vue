@@ -1,6 +1,19 @@
 <script>
+import { store, fetchSingleApartment } from '../../store';
 export default{
-    name: "ApartmentShow"
+    name: "ApartmentShow",
+    data(){
+        return{
+            apartment: store.singleApartment,
+            
+        }
+    },
+
+    mounted(){
+        fetchSingleApartment(this.$route.params.id);
+    }
+
+
 }
 </script>
 

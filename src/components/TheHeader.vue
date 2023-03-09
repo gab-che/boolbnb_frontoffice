@@ -7,7 +7,7 @@ export default {};
       <div class="logo-container"><img src="../assets/vue.svg" alt="" /></div>
       <div class="link-container">
         <ul class="d-flex justify-content-beetween">
-          <li><a href=""></a>link</li>
+          <router-link :to="{ name: 'apartments.index' }" class="nav-link">Index</router-link>
           <li><a href=""></a>link</li>
           <li><a href=""></a>link</li>
         </ul>

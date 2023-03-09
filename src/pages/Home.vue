@@ -9,7 +9,7 @@ export default {
 
 <template>
   <TheHeader></TheHeader>
-  <Carousel></Carousel>
+  <!-- <Carousel></Carousel> -->
 </template>
 
 <style lang="scss" scoped></style>
