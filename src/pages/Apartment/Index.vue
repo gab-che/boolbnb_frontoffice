@@ -1,6 +1,15 @@
 <script>
+import { store, fetchAllApartments } from '../../store';
 export default{
-    name: "ApartmentIndex"
+    name: "ApartmentIndex",
+    data(){
+        return{
+            apartments: store.allApartments,
+        }
+    },
+    mounted(){
+        fetchAllApartments();
+    }
 }
 </script>
 
