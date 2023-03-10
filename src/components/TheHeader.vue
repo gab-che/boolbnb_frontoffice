@@ -2,10 +2,12 @@
 export default {};
 </script>
 <template>
-  <header>
+  <div class="bg-my-dark">
     <nav class="navbar navbar-light shadow">
       <div class="logo-container">
-        <img src="../../logo_nobg.png" alt="" />
+        <router-link :to="{ name: 'home' }">
+          <img src="../../logo_nobg.png" alt="" />
+        </router-link>
       </div>
       <div class="search-container">
         <input type="text" name="" class="search" />
@@ -13,14 +15,19 @@ export default {};
       <div class="link-container">
         <ul class="d-flex justify-content-beetween">
           <li><router-link :to="{ name: 'search' }">Ricerca</router-link></li>
-          <li><router-link :to="{ name: 'search' }">Ricerca</router-link></li>
+          <li>
+            <router-link :to="{ name: 'AboutUs' }">Su di noi</router-link>
+          </li>
           <li><router-link :to="{ name: 'search' }">Ricerca</router-link></li>
         </ul>
       </div>
     </nav>
-  </header>
+  </div>
 </template>
 <style lang="scss" scoped>
+.bg-my-dark {
+  background-color: rgb(10, 7, 2);
+}
 .search {
   font-size: 16px;
   font-size: max(16px, 1em);
@@ -38,7 +45,6 @@ img {
   width: 120px;
 }
 nav {
-  background-color: rgb(0, 0, 0);
   padding: 0px 64px;
 }
 ul {

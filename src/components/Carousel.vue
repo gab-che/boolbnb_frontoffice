@@ -120,7 +120,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .carousel {
   margin-top: 32px;
   width: 75vw;
