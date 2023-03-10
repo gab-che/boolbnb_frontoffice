@@ -122,7 +122,7 @@ export default {
 
 <style>
 .carousel {
-  margin-top: 120px;
+  margin-top: 32px;
   width: 75vw;
   overflow: hidden;
 }
