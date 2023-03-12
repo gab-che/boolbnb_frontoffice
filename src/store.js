@@ -7,6 +7,7 @@ export const store = reactive({
     backendVisuals: 'http://localhost:8000/api/visuals/',
 
     allApartments: [],
+    nearestApartments: [],
     sponsoredApartments: [],
     singleApartment: {},
 
@@ -45,6 +46,22 @@ export function fetchSponsoredApartments() {
     })
         .then((resp) => {
             store.sponsoredApartments = resp.data;
+        })
+}
+
+/**
+ * Restituisce appartamenti nel raggio di 20km
+ * dopo ricerca semplice (es. solo città)
+ */
+export function fetchNearestApartments(cityInput) {
+    axios.get(store.backendApartments, {
+        params: {
+            //input da passare con v-model
+            city: cityInput,
+        }
+    })
+        .then((resp) => {
             console.log(resp.data);
+            store.nearestApartments = resp.data;
         })
 }
