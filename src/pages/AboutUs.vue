@@ -12,32 +12,37 @@
                 <span class="text-secondary">{{ me.surname }}</span>
               </h5>
 
-              <div class="links-container">
+              <div class="button-container">
                 <button
                   @click="show = !show"
-                  class="btn btn-dark rounded-circle ratio-1"
+                  class="btn btn-dark rounded-circle"
                 >
-                  <i class="fas fa-share"></i>
+                  <div class="icon-container">
+                    <i class="fa-solid fa-share-nodes ratio=1"></i>
+                  </div>
                 </button>
-                <div
-                  :class="'transition-container ' + (show ? 'item' : 'd-none')"
-                >
-                  <a
-                    class="p-3 ratio-1 bg-white rounded-circle"
-                    :href="me.gitLink"
-                    ><i class="fa-brands fa-github"></i
-                  ></a>
-                  <a
-                    :href="me.linkedIn"
-                    class="p-3 ratio-1 bg-white rounded-circle"
-                    ><i class="fa-brands fa-linkedin"></i
-                  ></a>
-                  <a
-                    :href="me.gmail"
-                    class="p-3 ratio-1 bg-white rounded-circle"
-                    ><i class="fa-solid fa-envelope"></i
-                  ></a>
-                </div>
+                <transition name="links">
+                  <div class="transition-container" v-if="show">
+                    <div class="link-container">
+                      <a class="" :href="me.gitLink"
+                        ><div class="icon-container">
+                          <i class="fa-brands fa-github"></i></div
+                      ></a>
+                    </div>
+                    <div class="link-container">
+                      <a :href="me.linkedIn" class=""
+                        ><div class="icon-container">
+                          <i class="fa-brands fa-linkedin"></i></div
+                      ></a>
+                    </div>
+                    <div class="link-container">
+                      <a :href="me.gmail" class=""
+                        ><div class="icon-container">
+                          <i class="fa-solid fa-envelope"></i></div
+                      ></a>
+                    </div>
+                  </div>
+                </transition>
               </div>
             </div>
           </div>
@@ -47,28 +52,102 @@
   </div>
 </template>
 <style lang="scss" scoped>
-.links-container {
-  display: inline;
+.button-container {
+  position: relative;
+  font-size: 32px;
+  .btn {
+    font-size: 32px;
+    padding: 0;
+    aspect-ratio: 1 / 1;
+  }
+  .transition-container {
+    margin-left: 16px;
+    left: 44px;
+    top: 6px;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    .link-container {
+      margin-right: 16px;
+      border-radius: 50%;
+      flex-grow: 1;
+      a {
+        color: white;
+        text-decoration: none;
+      }
+    }
+  }
+}
+.icon-container {
+  padding: 8px;
+  background-color: black;
+  border-radius: 50%;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.links-enter-active {
+  animation: links-in 0.8s ease;
+}
+.links-leave-active {
+  animation: links-out 0.8s ease;
 }
 
-a {
-  color: black;
-  text-decoration: none;
-}
-.item {
-  display: inline;
-  animation: fade_in_show 0.7s;
-}
-
-@keyframes fade_in_show {
+@keyframes links-in {
   0% {
     opacity: 0;
     transform: scale(0);
+    transform: translateX(-60px);
+  }
+  25% {
+    opacity: 0.25;
+    transform: scale(0.25);
+    transform: translateX(-30px);
   }
 
+  50% {
+    opacity: 0.5;
+    transform: scale(0.5);
+    transform: translateX(-15px);
+  }
+  75% {
+    opacity: 0.75;
+    transform: scale(0.75);
+    transform: translateX(-5px);
+  }
   100% {
     opacity: 1;
     transform: scale(1);
+    transform: translateX(0px);
+  }
+}
+@keyframes links-out {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+    transform: translateX(0px);
+  }
+  25% {
+    opacity: 0.75;
+    transform: scale(0.75);
+    transform: translateX(-5px);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(0.5);
+    transform: translateX(-15px);
+  }
+  75% {
+    opacity: 0.25;
+    transform: scale(0.25);
+    transform: translateX(-30px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0);
+    transform: translateX(-60px);
   }
 }
 </style>
