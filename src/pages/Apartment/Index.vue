@@ -4,11 +4,11 @@ export default{
     name: "ApartmentIndex",
     data(){
         return{
-            apartments: store.allApartments,
+            store,
         }
     },
     mounted(){
-        fetchAllApartments();
+        fetchAllApartments(this.$route.query);
     }
 }
 </script>
