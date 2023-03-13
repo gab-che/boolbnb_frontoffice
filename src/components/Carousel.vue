@@ -1,10 +1,10 @@
 <template>
-  <div
-    class="container-fluid"
-    @mouseover="transitioning = true"
-    @mouseleave="transitioning = false"
-  >
-    <div class="carousel mx-auto">
+  <div class="container-fluid">
+    <div
+      class="carousel mx-auto"
+      @mouseover="transitioning = true"
+      @mouseleave="transitioning = false"
+    >
       <div class="inner" ref="inner" :style="innerStyles">
         <div class="card" v-for="card in cards" :key="card">
           {{ card }}
@@ -120,20 +120,20 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .carousel {
-  margin-top: 120px;
-  width: 64vw;
+  margin-top: 32px;
+  width: 75vw;
   overflow: hidden;
 }
 
 .inner {
-  transition: transform 0.2s;
+  transition: transform 1s;
   white-space: nowrap;
 }
 
 .card {
-  width: 240px;
+  width: 320px;
   margin-right: 10px;
   display: inline-flex;
 
