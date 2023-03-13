@@ -2,7 +2,17 @@
   <div class="container-fluid">
     <div
       class="carousel mx-auto"
-      @mouseover="transitioning = true"
+      @mouseover="
+        () => {
+          if (transitioning) {
+            setInterval(() => {
+              transitioning = true;
+            }, 3010);
+          } else {
+            transitioning = true;
+          }
+        }
+      "
       @mouseleave="transitioning = false"
     >
       <div class="inner" ref="inner" :style="innerStyles">

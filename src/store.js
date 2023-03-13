@@ -72,6 +72,7 @@ export function fetchNearestApartments(cityInput) {
 
 export function fetchServices() {
   axios.get(store.backendservices, {}).then((resp) => {
-    store.allServices = resp.data;
+    store.allServices = resp.data.data;
+    console.log(resp);
   });
 }
