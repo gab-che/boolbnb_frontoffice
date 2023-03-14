@@ -1,5 +1,18 @@
 <script>
-export default {};
+import { fetchNearestApartments } from '../store';
+export default {
+  data(){
+    return{
+      input: '',
+    }
+  },
+  methods:{
+    sendInput(){
+      fetchNearestApartments(this.input)
+      this.$router.push('/ricerca-avanzata');
+    }
+  }
+};
 </script>
 <template>
   <div class="bg-my-dark">
@@ -10,7 +23,7 @@ export default {};
         </router-link>
       </div>
       <div class="search-container">
-        <input type="text" name="" class="search" />
+        <input type="text" name="" class="search" @keyup.enter="sendInput" v-model="input"/>
       </div>
       <div class="link-container">
         <ul class="d-flex justify-content-beetween">

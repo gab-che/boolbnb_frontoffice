@@ -17,7 +17,7 @@ export const store = reactive({
     currentPage: 1,
     totalPages: 1,
 
-    simpleSearch: '',
+    // simpleSearch: '',
     advancedSearch: {
         city: 'Roma',
         radius: 50,
@@ -67,11 +67,11 @@ export function fetchSponsoredApartments() {
  * Restituisce appartamenti nel raggio di 20km
  * dopo ricerca semplice (es. solo città)
  */
-export function fetchNearestApartments() {
+export function fetchNearestApartments(userInput) {
     axios.get(store.backendApartments, {
         params: {
             //input da passare con v-model
-            city: store.simpleSearch,
+            city: userInput,
         }
     })
         .then((resp) => {
