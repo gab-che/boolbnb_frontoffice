@@ -1,9 +1,10 @@
 <script>
 import { store, fetchSingleApartment } from '../../store';
 import TheHeader from "../../components/TheHeader.vue";
+import Map from "../../components/Map.vue";
 export default{
     name: "ApartmentShow",
-    components: {TheHeader},
+    components: {TheHeader, Map},
     data(){
         
         return{
@@ -56,6 +57,13 @@ export default{
                 </div>
             </div>
         </div>
+
+
+        <Map :appartment-id="this.$route.params.id"
+        :appartment-address="this.store.singleApartment.address"
+        :appartment-latitude="this.store.singleApartment.latitude"
+        :appartment-longitude="this.store.singleApartment.longitude"></Map>
+        
     </div>
 </template>
 
