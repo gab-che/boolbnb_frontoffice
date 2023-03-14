@@ -8,11 +8,22 @@ export const store = reactive({
 
     allApartments: [],
     nearestApartments: [],
+    advancedApartments: [],
     sponsoredApartments: [],
     singleApartment: {},
 
     currentPage: 1,
     totalPages: 1,
+
+    simpleSearch: '',
+    advancedSearch: {
+        city: 'Roma',
+        radius: 50,
+        beds: 3,
+        rooms: 2,
+        sqrMeters: 50,
+        services: [1, 2, 4],
+    }
 });
 
 /**
@@ -53,15 +64,33 @@ export function fetchSponsoredApartments() {
  * Restituisce appartamenti nel raggio di 20km
  * dopo ricerca semplice (es. solo città)
  */
-export function fetchNearestApartments(cityInput) {
+export function fetchNearestApartments() {
     axios.get(store.backendApartments, {
         params: {
             //input da passare con v-model
-            city: cityInput,
+            city: store.simpleSearch,
         }
     })
         .then((resp) => {
             console.log(resp.data);
             store.nearestApartments = resp.data;
+        })
+}
+
+export function fetchAdvancedSearchApartments() {
+    axios.get(store.backendApartments, {
+        params: {
+            place: store.advancedSearch.city,
+            radius: store.advancedSearch.radius * 1000,
+            beds: store.advancedSearch.beds,
+            rooms: store.advancedSearch.rooms,
+            sqrMeters: store.advancedSearch.sqrMeters,
+            services: JSON.stringify(store.advancedSearch.services),
+            //advancedSearch: JSON.stringify(store.advancedSearch)
+        }
+    })
+        .then((resp) => {
+            console.log(resp.data)
+            store.advancedApartments = resp.data;
         })
 }
