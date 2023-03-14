@@ -11,6 +11,7 @@ export default {
     return {
       store,
       services: fetchServices(),
+      nearestApartments: store.nearestApartments,
     };
   },
   methods: {},
@@ -22,7 +23,7 @@ export default {
 
 <template>
   <TheHeader></TheHeader>
-  <div class="services-container">
+  <!-- <div class="services-container">
     <ul>
       <li v-for="service in services">
         <a href="#" class="text-white text-decoration-none">
@@ -31,7 +32,10 @@ export default {
         </a>
       </li>
     </ul>
-  </div>
+  </div> -->
+  <ul v-for="apartment in nearestApartments">
+    <li>{{ apartment.title }}</li>
+  </ul>
 </template>
 
 <style lang="scss" scoped>
