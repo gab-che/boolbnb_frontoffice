@@ -9,11 +9,12 @@ export default{
         
         return{
             store,
+            latitude:store.singleApartment.latitude,
             backendURL: "http://127.0.0.1:8000/storage/"
         }
     },
 
-    mounted(){
+    created(){
         fetchSingleApartment(this.$route.params.id);
     }
 
@@ -59,10 +60,7 @@ export default{
         </div>
 
 
-        <Map :appartment-id="this.$route.params.id"
-        :appartment-address="this.store.singleApartment.address"
-        :appartment-latitude="this.store.singleApartment.latitude"
-        :appartment-longitude="this.store.singleApartment.longitude"></Map>
+        <Map v-if="store.singleApartment" :appartment="[this.$route.params.id, this.store.singleApartment.address, this.store.singleApartment.latitude, store.singleApartment.longitude]"></Map>
         
     </div>
 </template>

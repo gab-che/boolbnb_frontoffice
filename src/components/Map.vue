@@ -13,17 +13,15 @@
       }
     },
     props:{
-      appartmentId: String,
-      appartmentLatitude: Number,
-      appartmentLongitude: Number,
-      appartmentAddress: String,
+      appartment: Array
   
     },
     name: 'Map',
   
     setup(props) {
+        
       const mapRef = ref(null);
-      const id = props.appartmentId;
+      const id = props.appartment[0];
 
       onMounted(async () => {
         
@@ -31,9 +29,11 @@
         await axios.get(`http://127.0.0.1:8000/api/apartments/${id}`)
           .then(resp => {
             apartment = resp.data;
-          });
-        const centerLat = props.appartmentLatitude - 0.001
-        const centerLon = props.appartmentLongitude - 0.001
+          })
+          .catch(error=>{console.log(error);})
+          console.log(props.appartment)
+        const centerLat = props.appartment[2]- 0.001
+        const centerLon = props.appartment[3]- 0.001
         const tt = window.tt;
         var map = tt.map({
           key: 'C1SeMZqi2HmD2jfTGWrbkAAknINrhUJ3',
@@ -45,7 +45,7 @@
         map.addControl(new tt.FullscreenControl());
         map.addControl(new tt.NavigationControl());
   
-        addMarker(map, props.appartmentLongitude, props.appartmentLatitude, props.appartmentAddress);
+        addMarker(map, props.appartment[3], props.appartment[2], props.appartment[1]);
   
   
       })
