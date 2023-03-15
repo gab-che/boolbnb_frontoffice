@@ -31,8 +31,8 @@ export default {
         <h1 class="p-5 text-center">{{ store.singleApartment.title }}</h1>
 
 
-        <div class="row pb-5">
-            <div class="col-6">
+        <div class="row g-4 pb-5">
+            <div class="col-12 col-md-6">
                 <h3>{{ store.singleApartment.address }}</h3>
                 <hr class="giallo">
                 <p class="lead">
@@ -58,7 +58,7 @@ export default {
                 </ul>
             </div>
 
-            <div class="col-6">
+            <div class="col-12 col-md-6">
                 <div class="mb-3 d-flex justify-content-center">
                     <img v-if="store.singleApartment.imgLink" class="w-100" :src="backendURL + store.singleApartment.img_cover" alt="Foto del posto">
                     <img v-else :src="store.singleApartment.img_cover" alt="Foto del posto">
