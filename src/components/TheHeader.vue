@@ -13,10 +13,10 @@ export default {};
         </router-link>
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" href="#">Accedi</a>
+            <a class="nav-link" href="http://localhost:8000/login">Accedi</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Registrati</a>
+            <a class="nav-link" href="http://localhost:8000/register">Registrati</a>
           </li>
           <li class="nav-item">
             <router-link :to="{ name: 'AboutUs' }"  class="nav-link">Su di noi</router-link>
