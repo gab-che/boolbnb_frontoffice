@@ -55,7 +55,8 @@ export default {
                 <label for="exampleFormControlTextarea1" class="form-label">Scrivi il tuo messaggio</label>
                 <textarea v-model="this.textPlace" class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
             </div>
-            <button type="submit" class="btn btn-warning">Invia</button>
+            <button v-if="emailPlace && namePlace && textPlace" type="submit" class="btn btn-warning">Invia</button>
+            <button v-else disabled class="btn btn-warning">Invia</button>
         </form>
 </div>
 </template>
