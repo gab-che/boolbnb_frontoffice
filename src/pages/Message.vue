@@ -42,21 +42,21 @@ export default {
 <TheHeader></TheHeader>
 <div class="container">
     <h1 class="p-4 text-center">{{ store.singleApartment.title }}</h1>
-    
-        <div class="mb-3">
-            <label for="exampleFormControlInput" class="form-label">Inserisci il tuo nome completo</label>
-            <input v-model="this.namePlace" type="text" class="form-control" id="exampleFormControlInput" placeholder="Nome e cognome">
-        </div>
-        <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Lascia la tua email così che il proprietario possa ricontattarti</label>
-            <input v-model="this.emailPlace" type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-        </div>
-        <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label">Scrivi il tuo messaggio</label>
-            <textarea v-model="this.textPlace" class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
-        </div>
-        <button @click="this.sendMessage()" class="btn btn-warning">Invia</button>
-
+        <form v-on:submit.prevent="this.sendMessage()">
+            <div class="mb-3">
+                <label for="exampleFormControlInput" class="form-label">Inserisci il tuo nome completo</label>
+                <input v-model="this.namePlace" type="text" class="form-control" id="exampleFormControlInput" placeholder="Nome e cognome">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Lascia la tua email così che il proprietario possa ricontattarti</label>
+                <input v-model="this.emailPlace" type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Scrivi il tuo messaggio</label>
+                <textarea v-model="this.textPlace" class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+            </div>
+            <button type="submit" class="btn btn-warning">Invia</button>
+        </form>
 </div>
 </template>
 
