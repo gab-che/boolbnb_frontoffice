@@ -1,5 +1,18 @@
 <script>
-export default {};
+import { fetchNearestApartments } from '../store';
+export default {
+  data(){
+    return{
+      input: '',
+    }
+  },
+  methods:{
+    sendInput(){
+      fetchNearestApartments(this.input)
+      this.$router.push('/ricerca-avanzata');
+    }
+  }
+};
 </script>
 <template>
   <nav class="navbar navbar-expand-lg bg-my-dark p-3">
