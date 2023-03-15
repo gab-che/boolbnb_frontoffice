@@ -11,7 +11,6 @@ export default {
     return {
       store,
       services: fetchServices(),
-      nearestApartments: store.nearestApartments,
     };
   },
   methods: {},
@@ -33,7 +32,7 @@ export default {
       </li>
     </ul>
   </div> -->
-  <ul v-for="apartment in nearestApartments">
+  <ul v-for="apartment in store.nearestApartments">
     <li>{{ apartment.title }}</li>
   </ul>
 </template>
