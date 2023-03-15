@@ -1,7 +1,6 @@
 <script>
 import { store, fetchNearestApartments, fetchServices } from "../store";
 import axios from "axios";
-import { onMounted } from "vue";
 // import ModalForSearch from "../components/ModalForSearch.Vue";
 import TheHeader from "../components/TheHeader.vue";
 export default {
@@ -23,23 +22,25 @@ export default {
 </script>
 
 <template>
-  <TheHeader></TheHeader>
-  <div class="services-container">
-    <ul>
-      <li v-for="service in services">
-        <a href="#" class="text-white text-decoration-none">
-          {{ service.name }}
-          <div class="ms-auto"><i :class="service.icon"></i></div>
-        </a>
-      </li>
-    </ul>
-  </div>
+  <div>
+    <TheHeader></TheHeader>
+    <div class="services-container">
+      <ul>
+        <li v-for="service in services">
+          <a href="#" class="text-white text-decoration-none">
+            {{ service.name }}
+            <div class="ms-auto"><i :class="service.icon"></i></div>
+          </a>
+        </li>
+      </ul>
+    </div>
 
-  <ul v-if="nearestApartments" v-for="apartment in nearestApartments">
-    <li v-for="hotel in apartment">{{ hotel.title }}</li>
-  </ul>
-  <div v-if="nearestApartments.length === 0">
-    <h3 class="banner banner-warning">Non hai risultati</h3>
+    <ul v-if="nearestApartments" v-for="apartment in nearestApartments">
+      <li v-for="hotel in apartment">{{ hotel.title }}</li>
+    </ul>
+    <div v-if="nearestApartments.length === 0">
+      <h3 class="banner banner-warning">Non hai risultati</h3>
+    </div>
   </div>
 </template>
 
