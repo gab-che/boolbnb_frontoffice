@@ -14,31 +14,7 @@ export default {
       nearestApartments: [],
     };
   },
-  methods: {
-    async fetchServices() {
-      await axios
-        .get(store.backendservices, {})
-        .then((resp) => {
-          this.services = resp.data;
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    },
-    async fetchNearestApartments(userInput) {
-      await axios
-        .get(store.backendApartments, {
-          params: {
-            //input da passare con v-model
-            city: userInput,
-          },
-        })
-        .then((resp) => {
-          debugger;
-          this.nearestApartments = resp.data;
-        });
-    },
-  },
+  methods: {},
   mounted() {
     this.fetchServices();
     this.fetchNearestApartments("milan");
