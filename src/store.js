@@ -67,6 +67,19 @@ export function fetchSponsoredApartments() {
  * Restituisce appartamenti nel raggio di 20km
  * dopo ricerca semplice (es. solo città)
  */
+export async function fetchNearestApartments(userInput) {
+  await axios
+    .get(store.backendApartments, {
+      params: {
+        //input da passare con v-model
+        city: userInput,
+      },
+    })
+    .then((resp) => {
+      debugger;
+      this.nearestApartments = resp.data;
+    });
+}
 
 export function fetchAdvancedSearchApartments() {
   axios
@@ -84,5 +97,15 @@ export function fetchAdvancedSearchApartments() {
     .then((resp) => {
       console.log(resp.data);
       store.advancedApartments = resp.data;
+    });
+}
+export async function fetchServices() {
+  await axios
+    .get(store.backendservices, {})
+    .then((resp) => {
+      this.services = resp.data;
+    })
+    .catch((e) => {
+      console.log(e);
     });
 }
