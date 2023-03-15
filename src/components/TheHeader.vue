@@ -37,7 +37,7 @@ export default {
         </ul>
       </div>
       <div class="search-container">
-        <input type="text" name="" class="search" />
+        <input type="text" name="" class="search" @keyup.enter="sendInput" v-model="input"/>
       </div>
     </div>
 </nav>

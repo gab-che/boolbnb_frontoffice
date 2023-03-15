@@ -1,5 +1,5 @@
 <script>
-import { store, fetchServices } from "../store";
+import { store } from "../store";
 import axios from "axios";
 import { onMounted } from "vue";
 // import ModalForSearch from "../components/ModalForSearch.Vue";
@@ -10,12 +10,14 @@ export default {
   data() {
     return {
       store,
-      services: fetchServices(),
+      services: [],
+      nearestApartments: [],
     };
   },
   methods: {},
   mounted() {
-    fetchServices();
+    this.fetchServices();
+    this.fetchNearestApartments("milan");
   },
 };
 </script>
@@ -27,15 +29,29 @@ export default {
       <li v-for="service in services">
         <a href="#" class="text-white text-decoration-none">
           {{ service.name }}
-          <div><i :class="service.icon"></i></div>
+          <div class="ms-auto"><i :class="service.icon"></i></div>
         </a>
       </li>
     </ul>
   </div>
+
+  <ul v-if="nearestApartments" v-for="apartment in nearestApartments">
+    <li v-for="hotel in apartment">{{ hotel.title }}</li>
+  </ul>
+  <div v-if="nearestApartments.length === 0">
+    <h3 class="banner banner-warning">Non hai risultati</h3>
+  </div>
 </template>
 
 <style lang="scss" scoped>
-.service-container {
+.services-container {
   background-color: rgb(32, 30, 30);
+  ul {
+    list-style-type: none;
+    display: flex;
+    li {
+      flex-grow: 1;
+    }
+  }
 }
 </style>
