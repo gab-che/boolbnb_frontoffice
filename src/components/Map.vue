@@ -74,6 +74,7 @@
   </script>
   <style> #map {
      height: 512px;
-     width: 512px;
+     width: 100%;
+     display: block;
    }
   </style>

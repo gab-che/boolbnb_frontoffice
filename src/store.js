@@ -37,6 +37,12 @@ export function fetchAllApartments(query) {
 export function fetchSingleApartment(id) {
   axios.get(store.backendApartments + id).then((resp) => {
     store.singleApartment = resp.data;
+    if (store.singleApartment.img_cover.includes("cover_img")){
+      store.singleApartment["imgLink"] = true;
+    } else{
+      store.singleApartment["imgLink"] = false;
+    }
+    
   });
 }
 
