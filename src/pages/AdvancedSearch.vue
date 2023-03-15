@@ -1,5 +1,5 @@
 <script>
-import { store } from "../store";
+import { store, fetchNearestApartments, fetchServices } from "../store";
 import axios from "axios";
 import { onMounted } from "vue";
 // import ModalForSearch from "../components/ModalForSearch.Vue";
@@ -10,14 +10,14 @@ export default {
   data() {
     return {
       store,
-      services: [],
-      nearestApartments: [],
+      services: store.allServices,
+      nearestApartments: store.nearestApartments,
     };
   },
   methods: {},
   mounted() {
-    this.fetchServices();
-    this.fetchNearestApartments("milan");
+    fetchServices();
+    fetchNearestApartments("milan");
   },
 };
 </script>

@@ -12,7 +12,7 @@ export const store = reactive({
   advancedApartments: [],
   sponsoredApartments: [],
   singleApartment: {},
-  //   allServices: [],
+  allServices: [],
 
   currentPage: 1,
   totalPages: 1,
@@ -54,7 +54,6 @@ export function fetchSingleApartment(id) {
       store.singleApartment["imgLink"] = false;
     }
   });
-
 }
 
 export function fetchSponsoredApartments() {
@@ -82,8 +81,7 @@ export async function fetchNearestApartments(userInput) {
       },
     })
     .then((resp) => {
-      debugger;
-      this.nearestApartments = resp.data;
+      store.nearestApartments = resp.data;
     });
 }
 
@@ -109,7 +107,7 @@ export async function fetchServices() {
   await axios
     .get(store.backendservices, {})
     .then((resp) => {
-      this.services = resp.data;
+      store.allServices = resp.data;
     })
     .catch((e) => {
       console.log(e);
