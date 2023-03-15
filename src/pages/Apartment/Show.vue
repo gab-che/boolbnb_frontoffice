@@ -73,7 +73,7 @@ export default {
                             <br>
                             <br>
                             <span>Mettiti subito in contatto con il proprietario</span>
-                            <button class="btn btn-warning m-2">Messaggio</button>
+                            <button class="btn btn-warning m-2"><router-link class="message-link" :to="{ name: 'message' }">Messaggio</router-link></button>
                         </li>
                     </ul>
                 </div>
@@ -120,5 +120,10 @@ i {
 
 .giallo {
     color: #ffc107;
+}
+
+.message-link{
+    text-decoration: none;
+    color: black;
 }
 </style>
