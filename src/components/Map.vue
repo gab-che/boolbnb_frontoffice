@@ -12,25 +12,28 @@ export default {
       'apartmentList': []
     }
   },
-  name: 'Map',
-  mounted() {
-    const sizeMapModify = document.querySelector('#italy');
-    sizeMapModify.style = 'height:400px'
+  props:{
+    appartment: Array
+
   },
+  name: 'Map',
 
-  setup() {
-    const mapRef = ref('italy');
-    const id = <? php echo json_encode($apartment -> id, JSON_HEX_TAG); ?>;
-
+  setup(props) {
+      
+    const mapRef = ref(null);
+    const id = props.appartment[0];
 
     onMounted(async () => {
+      
       let apartment;
-      await axios.get(`${window.location.origin}/api/apartments/${id}`)
+      await axios.get(`http://127.0.0.1:8000/api/apartments/${id}`)
         .then(resp => {
           apartment = resp.data;
-        });
-      const centerLat = apartment.latitude - 0.001
-      const centerLon = apartment.longitude - 0.001
+        })
+        .catch(error=>{console.log(error);})
+        console.log(props.appartment)
+      const centerLat = props.appartment[2]- 0.001
+      const centerLon = props.appartment[3]- 0.001
       const tt = window.tt;
       var map = tt.map({
         key: 'C1SeMZqi2HmD2jfTGWrbkAAknINrhUJ3',
@@ -42,7 +45,7 @@ export default {
       map.addControl(new tt.FullscreenControl());
       map.addControl(new tt.NavigationControl());
 
-      addMarker(map, apartment.longitude, apartment.latitude, apartment.address);
+      addMarker(map, props.appartment[3], props.appartment[2], props.appartment[1]);
 
 
     })
@@ -71,6 +74,7 @@ export default {
 </script>
 <style> #map {
    height: 512px;
-   width: 512px;
+   width: 100%;
+   display: block;
  }
 </style>
