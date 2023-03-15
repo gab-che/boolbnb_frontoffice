@@ -30,7 +30,7 @@ export default {
                     apartment_id: this.idPlace
             })
             .then((resp)=>{
-                console.log(resp)
+                this.$router.push('/appartamenti/:id')
             })
         }
     }
