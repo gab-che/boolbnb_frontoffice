@@ -66,7 +66,7 @@ export default {
                 class="form-range"
                 id="customRange1"
                 name="range"
-                v-model.lazy="range"
+                v-model.lazy="radius"
               />
             </div>
             <div>
