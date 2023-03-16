@@ -11,7 +11,7 @@ export default {
       store,
     }
   },
-  mounted(){
+  mounted() {
     fetchSponsoredApartments();
   }
 };
