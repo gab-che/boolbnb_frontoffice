@@ -5,7 +5,7 @@ import axios from "axios";
 import TheHeader from "../components/TheHeader.vue";
 export default {
   components: { TheHeader },
-  name: "AdvancedSearch",
+  name: "Search",
   data() {
     return {
       store,
@@ -36,7 +36,7 @@ export default {
     </div>
 
     <ul v-if="nearestApartments" v-for="apartment in nearestApartments">
-      <li v-for="hotel in apartment">{{ hotel.title }}</li>
+      <li>{{ apartment.title }}</li>
     </ul>
     <div v-if="nearestApartments.length === 0">
       <h3 class="banner banner-warning">Non hai risultati</h3>
