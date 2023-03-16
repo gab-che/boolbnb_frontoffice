@@ -2,17 +2,7 @@
   <div class="container-fluid">
     <div
       class="carousel mx-auto"
-      @mouseover="
-        () => {
-          if (transitioning) {
-            setInterval(() => {
-              transitioning = true;
-            }, 3010);
-          } else {
-            transitioning = true;
-          }
-        }
-      "
+      @mouseover="transitioning = true"
       @mouseleave="transitioning = false"
     >
       <div class="inner" ref="inner" :style="innerStyles">
@@ -78,9 +68,11 @@ export default {
           const card = this.cards.shift();
           this.cards.push(card);
           this.resetTranslate();
-          this.transitioning = false;
+          if (this.transitioning) {
+            this.transitioning = false;
+          }
         });
-      }, 3000);
+      }, 7000);
     },
 
     prev() {

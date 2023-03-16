@@ -158,6 +158,7 @@ export default {
   name: "AboutUs",
   data() {
     return {
+      searchPage: true,
       show: false,
       us: [
         {
