@@ -3,7 +3,7 @@ import HomePage from "./pages/Home.vue";
 import AdvancedSearch from "./pages/AdvancedSearch.vue";
 import ApartmentIndex from "./pages/Apartment/Index.vue";
 import ApartmentShow from "./pages/Apartment/Show.vue";
-import SendMessage from "./pages/Message.vue";
+import SendMessage from "./components/Message.vue";
 import AboutUs from "./pages/AboutUs.vue";
 const router = createRouter({
   history: createWebHistory(),

@@ -17,8 +17,8 @@ export default {
 
     created() {
         fetchSingleApartment(this.$route.params.id);
-        
-    }, 
+
+    },
 
 
 
@@ -42,16 +42,15 @@ export default {
                 <div class="testo m-4">
                     <h4 class="giallo">Descrizione</h4>
                     <p>
-                        {{ store.singleApartment.description }} 
+                        {{ store.singleApartment.description }}
                     </p>
                 </div>
-                
+
                 <ul class="list-group w-100">
                     <li class="list-group-item service-title d-flex align-items-center">
                         <h6>Servizi</h6>
                     </li>
-                    <li v-for="service in store.singleApartment.services"
-                        class="list-group-item d-flex align-items-center">
+                    <li v-for="service in store.singleApartment.services" class="list-group-item d-flex align-items-center">
                         <i :class="service.icon"></i>
                         <span class="service-name">{{ service.name }}</span>
                     </li>
@@ -60,7 +59,8 @@ export default {
 
             <div class="col-12 col-md-6">
                 <div class="mb-3 d-flex justify-content-center">
-                    <img v-if="store.singleApartment.imgLink" class="w-100" :src="backendURL + store.singleApartment.img_cover" alt="Foto del posto">
+                    <img v-if="store.singleApartment.imgLink" class="w-100"
+                        :src="backendURL + store.singleApartment.img_cover" alt="Foto del posto">
                     <img v-else :src="store.singleApartment.img_cover" alt="Foto del posto">
                 </div>
                 <div class="d-block">
@@ -73,7 +73,8 @@ export default {
                             <br>
                             <br>
                             <span>Mettiti subito in contatto con il proprietario</span>
-                            <button class="btn btn-warning m-2"><router-link class="message-link" :to="{ name: 'message' }">Messaggio</router-link></button>
+                            <router-link class=" btn btn-warning m-2 message-link"
+                                :to="{ name: 'message' }">Messaggio</router-link>
                         </li>
                     </ul>
                 </div>
@@ -87,10 +88,10 @@ export default {
                 :appartment="[this.$route.params.id, this.store.singleApartment.address, this.store.singleApartment.latitude, store.singleApartment.longitude]">
             </Map>
         </div>
- 
 
 
-        
+
+
 
     </div>
 </template>
@@ -122,7 +123,7 @@ i {
     color: #ffc107;
 }
 
-.message-link{
+.message-link {
     text-decoration: none;
     color: black;
 }
