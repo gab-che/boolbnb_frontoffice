@@ -1,12 +1,14 @@
 <template>
-  <div v-if="currentRouteName !== 'AboutUs'" class="search-container">
-    <input
-      type="text"
-      name=""
-      class="search"
-      @keyup.enter="sendInput"
-      v-model="input"
-    />
+  <div v-if="currentRouteName !== 'Search'">
+    <div v-if="currentRouteName !== 'AboutUs'" class="search-container">
+      <input
+        type="text"
+        name=""
+        class="search"
+        @keyup.enter="sendInput"
+        v-model="input"
+      />
+    </div>
   </div>
 </template>
 <script>
