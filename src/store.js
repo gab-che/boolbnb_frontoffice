@@ -108,6 +108,7 @@ export async function fetchServices() {
     .get(store.backendservices, {})
     .then((resp) => {
       store.allServices = resp.data;
+      localStorage.setItem("services", resp.data);
     })
     .catch((e) => {
       console.log(e);

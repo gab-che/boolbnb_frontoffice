@@ -5,8 +5,8 @@
         type="text"
         name=""
         class="search"
-        @keyup.enter="sendInput"
-        v-model="input"
+        @keyup.enter="sendpalce"
+        v-model="palce"
       />
     </div>
   </div>
@@ -17,12 +17,12 @@ import { fetchNearestApartments } from "../store";
 export default {
   data() {
     return {
-      input: "",
+      palce: "",
     };
   },
   methods: {
-    sendInput() {
-      fetchNearestApartments(this.input);
+    sendpalce() {
+      fetchNearestApartments(this.palce);
       this.$router.push("/ricerca-avanzata");
     },
   },
