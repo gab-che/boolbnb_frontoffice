@@ -10,7 +10,7 @@ export default {
 };
 </script>
 <template>
-  <div>
+  <div class="sticky">
     <nav class="navbar navbar-expand-lg bg-my-dark p-3">
       <div class="container-fluid">
         <button
@@ -51,6 +51,10 @@ export default {
   </div>
 </template>
 <style lang="scss" scoped>
+.sticky {
+  position: sticky;
+  top: 0;
+}
 .bg-my-dark {
   background-color: rgb(10, 7, 2);
 }
