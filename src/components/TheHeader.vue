@@ -1,7 +1,8 @@
 <script>
 import SimpleSearch from "./SimpleSearch.vue";
+import ModalForSearch from "./ModalForSearch.vue";
 export default {
-  components: { SimpleSearch },
+  components: { SimpleSearch, ModalForSearch },
   data() {},
   methods: {
     sendInput() {},
@@ -44,6 +45,7 @@ export default {
           </ul>
         </div>
         <SimpleSearch></SimpleSearch>
+        <ModalForSearch></ModalForSearch>
       </div>
     </nav>
   </div>
