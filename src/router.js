@@ -29,7 +29,7 @@ const router = createRouter({
       component: ApartmentIndex,
     },
     {
-      path: "/messaggio",
+      path: "/messaggio/:id",
       name: "message",
       component: SendMessage,
     },
