@@ -10,7 +10,7 @@ export default {
       <h1>Prenota una vacanza con</h1>
       <img src="../../logo_nobg.png" alt="" />
     </div>
-    <Carousel></Carousel>
+    <!-- <Carousel></Carousel> -->
   </div>
 </template>
 <style lang="scss" scoped>

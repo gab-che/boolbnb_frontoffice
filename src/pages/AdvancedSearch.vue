@@ -45,7 +45,7 @@ export default {
     class="all-container"
   >
     <TheHeader></TheHeader>
-    <div class="services-container p-2">
+    <!-- <div class="services-container p-2">
       <div class="row g-2">
         <div
           class="col-lg-3 col-md-4 col-sm-8"
@@ -57,7 +57,7 @@ export default {
           </a>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <ul v-for="apartment in store.nearestApartments">
       <li>{{ apartment.title }}</li>

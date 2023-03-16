@@ -1,24 +1,24 @@
 <template>
   <div v-if="currentRouteName !== 'message'">
-    <div v-if="currentRouteName !== 'Search'">
+    <!-- <div v-if="currentRouteName !== 'Search'"> -->
       <div v-if="currentRouteName !== 'AboutUs'" class="search-container">
-        <input type="text" name="" class="search" @keyup.enter="sendpalce" v-model="palce" />
+        <input type="text" name="" class="search" @keyup.enter="sendplace" v-model="store.simpleSearch" />
       </div>
-    </div>
+    <!-- </div> -->
   </div>
 </template>
 <script>
-import { fetchNearestApartments } from "../store";
+import { store, fetchNearestApartments } from "../store";
 
 export default {
   data() {
     return {
-      palce: "",
+      store,
     };
   },
   methods: {
-    sendpalce() {
-      fetchNearestApartments(this.palce);
+    sendplace() {
+      fetchNearestApartments();
       this.$router.push("/ricerca-avanzata");
     },
   },

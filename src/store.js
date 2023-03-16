@@ -17,9 +17,8 @@ export const store = reactive({
   currentPage: 1,
   totalPages: 1,
 
-  // simpleSearch: '',
+  simpleSearch: '',
   advancedSearch: {
-    city: "Roma",
     radius: 50,
     beds: 3,
     rooms: 2,
@@ -72,12 +71,12 @@ export function fetchSponsoredApartments() {
  * Restituisce appartamenti nel raggio di 20km
  * dopo ricerca semplice (es. solo città)
  */
-export async function fetchNearestApartments(userInput) {
+export async function fetchNearestApartments() {
   await axios
     .get(store.backendApartments, {
       params: {
         //input da passare con v-model
-        city: userInput,
+        city: store.simpleSearch,
       },
     })
     .then((resp) => {
@@ -89,7 +88,7 @@ export function fetchAdvancedSearchApartments() {
   axios
     .get(store.backendApartments, {
       params: {
-        place: store.advancedSearch.city,
+        place: store.simpleSearch,
         radius: store.advancedSearch.radius * 1000,
         beds: store.advancedSearch.beds,
         rooms: store.advancedSearch.rooms,

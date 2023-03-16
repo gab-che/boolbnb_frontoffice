@@ -1,15 +1,15 @@
 <script>
-import { store, fetchNearestApartments, fetchServices } from "../store";
+import { store, fetchNearestApartments, fetchServices, fetchAdvancedSearchApartments } from "../store";
 export default {
   data() {
     return {
       store,
       showModal: false,
-      radius: 0,
-      rooms: 0,
-      beds: 0,
-      bathrooms: 0,
-      sqrMeters: 0,
+      // radius: 0,
+      // rooms: 0,
+      // beds: 0,
+      // bathrooms: 0,
+      // sqrMeters: 0,
     };
   },
   methods: {
@@ -53,8 +53,9 @@ export default {
     </div>
     <div v-if="showModal" class="my-backdrop" @click="showModal = false"></div>
     <div v-if="showModal" class="my-modal" @click="showModal = true">
-      <form action="" class="form-group d-inline-block">
+      <form action="" class="form-group d-inline-block" @submit.prevent="fetchAdvancedSearchApartments">
         <div class="my-modal-content">
+          <button @click="fetchAdvancedSearchApartments">invia</button>
           <div class="kilometers-input">
             <div>
               <label for="customRange1" class="form-label">Example range</label>
@@ -66,7 +67,7 @@ export default {
                 class="form-range"
                 id="customRange1"
                 name="range"
-                v-model.lazy="radius"
+                v-model.lazy="store.advancedSearch.radius"
               />
             </div>
             <div>
@@ -83,7 +84,7 @@ export default {
                   step="1"
                   min="0"
                   max="255"
-                  v-model.lazy="rooms"
+                  v-model.lazy="store.advancedSearch.rooms"
                   class="form-control mx-auto rounded-5"
                 />
               </div>
@@ -94,11 +95,11 @@ export default {
                   step="1"
                   min="0"
                   max="255"
-                  v-model.lazy="beds"
+                  v-model.lazy="store.advancedSearch.beds"
                   class="form-control mx-auto rounded-5"
                 />
               </div>
-              <div class="col-3">
+              <!-- <div class="col-3">
                 <label class="form-label">Numero di bagni *</label>
                 <input
                   type="number"
@@ -108,7 +109,7 @@ export default {
                   v-model.lazy="bathrooms"
                   class="form-control mx-auto rounded-5"
                 />
-              </div>
+              </div> -->
               <div class="col-3">
                 <label class="form-label">Numero di metri quadri *</label>
                 <input
@@ -116,7 +117,7 @@ export default {
                   step="0.5"
                   min="30"
                   max="300000"
-                  v-model.lazy="sqrMeters"
+                  v-model.lazy="store.advancedSearch.sqrMeters"
                   class="form-control mx-auto rounded-5"
                 />
               </div>
@@ -136,7 +137,7 @@ export default {
                     class="form-check-input"
                     type="checkbox"
                     :id="'serviceCheckbox_' + { i }"
-                    v-model="service.id"
+                    v-model="store.advancedSearch.services"
                     name="services[]"
                   />
                   <label
