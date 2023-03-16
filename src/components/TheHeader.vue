@@ -45,7 +45,9 @@ export default {
 .sticky {
   position: sticky;
   top: 0;
+  z-index: 1000;
 }
+
 .bg-my-dark {
   background-color: rgb(10, 7, 2);
 }

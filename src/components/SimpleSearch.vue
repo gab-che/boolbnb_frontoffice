@@ -1,13 +1,9 @@
 <template>
-  <div v-if="currentRouteName !== 'Search'">
-    <div v-if="currentRouteName !== 'AboutUs'" class="search-container">
-      <input
-        type="text"
-        name=""
-        class="search"
-        @keyup.enter="sendpalce"
-        v-model="palce"
-      />
+  <div v-if="currentRouteName !== 'message'">
+    <div v-if="currentRouteName !== 'Search'">
+      <div v-if="currentRouteName !== 'AboutUs'" class="search-container">
+        <input type="text" name="" class="search" @keyup.enter="sendpalce" v-model="palce" />
+      </div>
     </div>
   </div>
 </template>
@@ -43,6 +39,7 @@ export default {
   border: 2px solid rgb(208, 190, 25);
   border-radius: 4px;
 }
+
 .search:focus-visible {
   outline: 2px solid rgb(47, 34, 11);
   outline-offset: 2px;
