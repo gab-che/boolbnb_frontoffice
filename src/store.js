@@ -19,11 +19,13 @@ export const store = reactive({
 
   simpleSearch: '',
   advancedSearch: {
-    radius: 50,
-    beds: 3,
-    rooms: 2,
-    sqrMeters: 50,
-    services: [1, 2, 4],
+    radius: 20,
+    beds: 1,
+    rooms: 1,
+    sqrMeters: 30,
+    services: [
+
+    ],
   },
 });
 
@@ -88,17 +90,16 @@ export function fetchAdvancedSearchApartments() {
   axios
     .get(store.backendApartments, {
       params: {
-        place: store.simpleSearch,
+        place: this.$route.query.city,
         radius: store.advancedSearch.radius * 1000,
         beds: store.advancedSearch.beds,
         rooms: store.advancedSearch.rooms,
         sqrMeters: store.advancedSearch.sqrMeters,
         services: JSON.stringify(store.advancedSearch.services),
-        //advancedSearch: JSON.stringify(store.advancedSearch)
       },
     })
     .then((resp) => {
-      console.log(resp.data);
+
       store.advancedApartments = resp.data;
     });
 }

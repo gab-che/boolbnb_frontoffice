@@ -1,4 +1,5 @@
 <script>
+import axios from "axios";
 import { store, fetchNearestApartments, fetchServices, fetchAdvancedSearchApartments } from "../store";
 export default {
   data() {
@@ -13,6 +14,26 @@ export default {
     };
   },
   methods: {
+    fetchAdvancedSearchApartments() {
+      axios
+        .get(store.backendApartments, {
+          params: {
+            place: this.$route.query.city,
+            radius: store.advancedSearch.radius * 1000,
+            beds: store.advancedSearch.beds,
+            rooms: store.advancedSearch.rooms,
+            sqrMeters: store.advancedSearch.sqrMeters,
+            services: JSON.stringify(store.advancedSearch.services),
+          },
+        })
+        .then((resp) => {
+
+          console.log(resp.data);
+          store.advancedApartments = resp.data;
+          console.log(store.advancedApartments);
+          store.nearestApartments = [];
+        });
+    },
     saveStorage() {
       localStorage.setItem("services", store.allServices);
       localStorage.setItem("nearestApartments", store.nearestApartments);
@@ -34,7 +55,7 @@ export default {
     },
   },
   mounted() {
-    // fetchServices();
+    fetchServices();
     // fetchNearestApartments("milan");
     // this.loadStorage();
   },
@@ -53,71 +74,60 @@ export default {
     </div>
     <div v-if="showModal" class="my-backdrop" @click="showModal = false"></div>
     <div v-if="showModal" class="my-modal" @click="showModal = true">
-      <form action="" class="form-group d-inline-block" @submit.prevent="fetchAdvancedSearchApartments">
-        <div class="my-modal-content">
-          <button @click="fetchAdvancedSearchApartments">invia</button>
-          <div class="kilometers-input">
-            <div>
-              <label for="customRange1" class="form-label">Example range</label>
-              <input type="range" step="5" min="5" max="50" class="form-range" id="customRange1" name="range"
-                v-model.lazy="store.advancedSearch.radius" />
+      <div class="my-modal-content">
+        <button @click="fetchAdvancedSearchApartments">invia</button>
+        <div class="kilometers-input">
+          <div>
+            <label for="customRange1" class="form-label">Example range</label>
+            <input type="range" step="5" min="5" max="50" class="form-range" id="customRange1" name="range"
+              v-model="store.advancedSearch.radius" />
+          </div>
+          <div>
+            <div>n kilometri:</div>
+            <div v-if="store.advancedSearch.radius">{{ store.advancedSearch.radius }}</div>
+            <div v-else>20</div>
+          </div>
+        </div>
+        <div class="numbers-container">
+          <div class="row">
+            <div class="col-3">
+              <label class="form-label">Numero di stanze *</label>
+              <input type="number" step="1" min="0" max="255" v-model.lazy="store.advancedSearch.rooms"
+                class="form-control mx-auto rounded-5" />
             </div>
-            <div>
-              <div>n kilometri:</div>
-              <div>{{ store.advancedSearch.radius }}</div>
+            <div class="col-3">
+              <label class="form-label">Numero di letti *</label>
+              <input type="number" step="1" min="0" max="255" v-model.lazy="store.advancedSearch.beds"
+                class="form-control mx-auto rounded-5" />
+            </div>
+
+            <div class="col-3">
+              <label class="form-label">Numero di metri quadri *</label>
+              <input type="number" step="0.5" min="30" max="300000" v-model.lazy="store.advancedSearch.sqrMeters"
+                class="form-control mx-auto rounded-5" />
             </div>
           </div>
-          <div class="numbers-container">
-            <div class="row">
-              <div class="col-3">
-                <label class="form-label">Numero di stanze *</label>
-                <input type="number" step="1" min="0" max="255" v-model.lazy="store.advancedSearch.rooms"
-                  class="form-control mx-auto rounded-5" />
-              </div>
-              <div class="col-3">
-                <label class="form-label">Numero di letti *</label>
-                <input type="number" step="1" min="0" max="255" v-model.lazy="store.advancedSearch.beds"
-                  class="form-control mx-auto rounded-5" />
-              </div>
-              <!-- <div class="col-3">
-                        <label class="form-label">Numero di bagni *</label>
-                        <input
-                          type="number"
-                          step="1"
-                          min="0"
-                          max="255"
-                          v-model.lazy="bathrooms"
-                          class="form-control mx-auto rounded-5"
-                        />
-                      </div> -->
-              <div class="col-3">
-                <label class="form-label">Numero di metri quadri *</label>
-                <input type="number" step="0.5" min="30" max="300000" v-model.lazy="store.advancedSearch.sqrMeters"
-                  class="form-control mx-auto rounded-5" />
-              </div>
-            </div>
-          </div>
-          <div class="services-modal-container">
-            <div class="row g-2">
-              <div v-for="(service, i) in store.allServices" :key="i"
-                class="col-sm-12 col-md-6 col-lg-3 px-0 d-flex justify-content-start">
-                <div class="m-0 form-check form-switch d-flex justify-content-center align-items-center">
-                  <input class="form-check-input" type="checkbox" :id="'serviceCheckbox_' + { i }"
-                    v-model="store.advancedSearch.services" name="services[]" />
-                  <label class="form-check-label text-start" :for="'serviceCheckbox_' + { i }">
-                    <div class="d-flex justify-content-center align-items-center">
-                      <div class="icon-width">
-                        <i :class="service.icon + ' text-secondary px-3'"></i>
-                      </div>
-                      <div class="">{{ service.name }}</div>
+        </div>
+        <div class="services-modal-container">
+          <div class="row g-2">
+            <div v-for="(service, i) in store.allServices" :key="i"
+              class="col-sm-12 col-md-6 col-lg-3 px-0 d-flex justify-content-start">
+              <div class="m-0 form-check form-switch d-flex justify-content-center align-items-center">
+                <input class="form-check-input" type="checkbox" :id="'serviceCheckbox_' + { i }"
+                  v-model="store.advancedSearch.services" :value="service.id" name="services[]" />
+                <label class="form-check-label text-start" :for="'serviceCheckbox_' + { i }">
+                  <div class="d-flex justify-content-center align-items-center">
+                    <div class="icon-width">
+                      <i :class="service.icon + ' text-secondary px-3'"></i>
                     </div>
-                  </label>
-                </div>
+                    <div class="">{{ service.name }}</div>
+                  </div>
+                </label>
               </div>
             </div>
           </div>
         </div>
-      </form>
+      </div>
     </div>
   </div>
 </template>
