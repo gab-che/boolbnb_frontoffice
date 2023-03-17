@@ -1,13 +1,12 @@
 <script>
-import SimpleSearch from "./SimpleSearch.vue";
 import ModalForSearch from "./ModalForSearch.vue";
 export default {
-  components: { SimpleSearch, ModalForSearch },
+  components: { ModalForSearch },
   data() {
-    return {}
+    return {};
   },
   methods: {
-    sendInput() { },
+    sendInput() {},
   },
 };
 </script>
@@ -15,8 +14,15 @@ export default {
   <div class="sticky">
     <nav class="navbar navbar-expand-lg bg-my-dark p-3">
       <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01"
-          aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarTogglerDemo01"
+          aria-controls="navbarTogglerDemo01"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
           <i class="fa-solid fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
@@ -28,14 +34,18 @@ export default {
               <a class="nav-link" href="http://localhost:8000/login">Accedi</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="http://localhost:8000/register">Registrati</a>
+              <a class="nav-link" href="http://localhost:8000/register"
+                >Registrati</a
+              >
             </li>
             <li class="nav-item">
-              <router-link :to="{ name: 'AboutUs' }" class="nav-link">Su di noi</router-link>
+              <router-link :to="{ name: 'AboutUs' }" class="nav-link"
+                >Su di noi</router-link
+              >
             </li>
           </ul>
         </div>
-        <SimpleSearch></SimpleSearch>
+
         <ModalForSearch></ModalForSearch>
       </div>
     </nav>

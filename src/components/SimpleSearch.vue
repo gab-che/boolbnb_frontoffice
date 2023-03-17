@@ -1,10 +1,17 @@
 <template>
-  <div v-if="currentRouteName !== 'message'">
-    <!-- <div v-if="currentRouteName !== 'Search'"> -->
-      <div v-if="currentRouteName !== 'AboutUs'" class="search-container">
-        <input type="text" name="" class="search" @keyup.enter="sendplace" v-model="store.simpleSearch" />
-      </div>
-    <!-- </div> -->
+  <div class="text-center">
+    <div class="d-inline-flex flex-column">
+      <label class="text-warning" for=""
+        >Dicci dove vuoi andare, noi ti ci portiamo</label
+      >
+      <input
+        type="text"
+        name=""
+        class="search"
+        @keyup.enter="sendplace"
+        v-model="store.simpleSearch"
+      />
+    </div>
   </div>
 </template>
 <script>

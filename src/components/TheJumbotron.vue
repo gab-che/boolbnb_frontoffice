@@ -1,7 +1,9 @@
 <script>
+import SimpleSearch from "./SimpleSearch.vue";
+
 import Carousel from "./Carousel.vue";
 export default {
-  components: { Carousel },
+  components: { Carousel, SimpleSearch },
 };
 </script>
 <template>
@@ -10,6 +12,7 @@ export default {
       <h1>Prenota una vacanza con</h1>
       <img src="../../logo_nobg.png" alt="" />
     </div>
+    <SimpleSearch></SimpleSearch>
     <!-- <Carousel></Carousel> -->
   </div>
 </template>
@@ -27,5 +30,6 @@ img {
   background-clip: initial;
   background-color: initial;
   background-size: cover;
+  height: calc(100vh - 72px);
 }
 </style>
