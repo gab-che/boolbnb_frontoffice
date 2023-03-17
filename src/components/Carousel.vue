@@ -1,6 +1,8 @@
 <template>
   <div class="container-fluid">
-    <h3 class="text-center">Alcuni appartamenti sponsorizzati</h3>
+    <h3 class="text-center text-white my-2">
+      Alcuni appartamenti sponsorizzati
+    </h3>
     <div
       id="carouselExampleCaptions"
       class="carousel slide h-100 shadow"
@@ -38,7 +40,7 @@
             :to="{ path: 'appartamenti/:id' + apartment.id }"
             class="text-white text-decoration-none"
           >
-            <div class="img-container">
+            <div class="img-container shadow">
               <img
                 :src="store.backendStorage + apartment.img_cover"
                 class="card-img-top"
@@ -127,5 +129,6 @@ export default {
   overflow: hidden;
   margin: 0 auto;
   height: 100%;
+  border-radius: 12px;
 }
 </style>
