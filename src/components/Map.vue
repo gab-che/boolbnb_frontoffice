@@ -33,7 +33,6 @@ export default {
         .catch((error) => {
           console.log(error);
         });
-      console.log(props.appartment);
       const centerLat = props.appartment[2] - 0.001;
       const centerLon = props.appartment[3] - 0.001;
       const tt = window.tt;
