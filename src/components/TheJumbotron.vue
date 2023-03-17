@@ -9,7 +9,6 @@ export default {
 <template>
   <div class="container-fluid jumbo">
     <div class="container pt-2 text-center">
-      <h1 class="pb-1">Prenota una vacanza con</h1>
       <img src="../../logo_nobg.png" alt="" />
     </div>
     <SimpleSearch></SimpleSearch>
@@ -19,6 +18,11 @@ export default {
   </div>
 </template>
 <style lang="scss" scoped>
+.container {
+}
+h1 {
+  color: rgb(244, 194, 30);
+}
 img {
   display: inline-block;
   width: 168px;
