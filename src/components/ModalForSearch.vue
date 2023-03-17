@@ -34,9 +34,9 @@ export default {
     },
   },
   mounted() {
-    fetchServices();
-    fetchNearestApartments("milan");
-    this.loadStorage();
+    // fetchServices();
+    // fetchNearestApartments("milan");
+    // this.loadStorage();
   },
   beforeUnmount() {
     this.saveStorage();
@@ -80,16 +80,16 @@ export default {
                   class="form-control mx-auto rounded-5" />
               </div>
               <!-- <div class="col-3">
-                      <label class="form-label">Numero di bagni *</label>
-                      <input
-                        type="number"
-                        step="1"
-                        min="0"
-                        max="255"
-                        v-model.lazy="bathrooms"
-                        class="form-control mx-auto rounded-5"
-                      />
-                    </div> -->
+                        <label class="form-label">Numero di bagni *</label>
+                        <input
+                          type="number"
+                          step="1"
+                          min="0"
+                          max="255"
+                          v-model.lazy="bathrooms"
+                          class="form-control mx-auto rounded-5"
+                        />
+                      </div> -->
               <div class="col-3">
                 <label class="form-label">Numero di metri quadri *</label>
                 <input type="number" step="0.5" min="30" max="300000" v-model.lazy="store.advancedSearch.sqrMeters"
