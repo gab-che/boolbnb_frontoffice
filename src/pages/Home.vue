@@ -1,5 +1,5 @@
 <script>
-import { store, fetchSponsoredApartments } from "../store";
+import { store } from "../store";
 import Carousel from "../components/Carousel.vue";
 import TheHeader from "../components/TheHeader.vue";
 import TheJumbotron from "../components/TheJumbotron.vue";
@@ -11,9 +11,7 @@ export default {
       store,
     };
   },
-  mounted() {
-    fetchSponsoredApartments();
-  },
+  mounted() {},
 };
 </script>
 

@@ -8,17 +8,25 @@ export default {
 </script>
 <template>
   <div class="container-fluid jumbo">
-    <div class="container pt-5 text-center">
-      <h1>Prenota una vacanza con</h1>
+    <div class="container pt-2 text-center">
+      <h1 class="pb-1">Prenota una vacanza con</h1>
       <img src="../../logo_nobg.png" alt="" />
     </div>
     <SimpleSearch></SimpleSearch>
-    <!-- <Carousel></Carousel> -->
+    <div class="carousel-container">
+      <Carousel></Carousel>
+    </div>
   </div>
 </template>
 <style lang="scss" scoped>
 img {
   display: inline-block;
+  width: 168px;
+}
+.carousel-container {
+  height: 45%;
+  width: 66%;
+  margin: 2em auto;
 }
 .jumbo {
   background-image: url("../../bg.jpg");
