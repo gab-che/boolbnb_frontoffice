@@ -9,6 +9,7 @@ export default {
   data() {
     return {
       store,
+
     };
   },
   methods: {
@@ -28,10 +29,14 @@ export default {
     },
   },
   computed: {},
+  created() {
+    fetchNearestApartments(this.$route.query.city);
+  },
   mounted() {
-    fetchServices();
-    fetchNearestApartments("milan");
-    this.loadStorage();
+
+    // fetchServices();
+    // fetchNearestApartments("milan");
+    // this.loadStorage();
   },
   beforeUnmount() {
     this.saveStorage();
@@ -43,18 +48,18 @@ export default {
   <div v-if="store.nearestApartments" class="all-container">
     <TheHeader></TheHeader>
     <!-- <div class="services-container p-2">
-                              <div class="row g-2">
-                                <div
-                                class="col-lg-3 col-md-4 col-sm-8"
-                                v-for="service in store.allServices"
-                                >
-                                <a href="#" class="text-white text-decoration-none">
-                                  {{ service.name }}
-                                  <div class="ms-auto"><i :class="service.icon"></i></div>
-                                </a>
-                              </div>
-                            </div>
-                          </div> -->
+                                              <div class="row g-2">
+                                                <div
+                                                class="col-lg-3 col-md-4 col-sm-8"
+                                                v-for="service in store.allServices"
+                                                >
+                                                <a href="#" class="text-white text-decoration-none">
+                                                  {{ service.name }}
+                                                  <div class="ms-auto"><i :class="service.icon"></i></div>
+                                                </a>
+                                              </div>
+                                            </div>
+                                          </div> -->
 
     <ul v-if="store.nearestApartments.length != 0" class="list-unstyled" v-for="apartment in store.nearestApartments">
       <li>{{ apartment.title }}</li>

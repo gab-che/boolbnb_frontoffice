@@ -72,12 +72,12 @@ export function fetchSponsoredApartments() {
  * Restituisce appartamenti nel raggio di 20km
  * dopo ricerca semplice (es. solo città)
  */
-export async function fetchNearestApartments() {
+export async function fetchNearestApartments(cityToSearch) {
   await axios
     .get(store.backendApartments, {
       params: {
         //input da passare con v-model
-        city: store.simpleSearch,
+        city: cityToSearch,
       },
     })
     .then((resp) => {
