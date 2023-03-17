@@ -1,8 +1,5 @@
 <template>
   <div class="container-fluid">
-    <h3 class="text-center text-white my-2">
-      Alcuni appartamenti sponsorizzati
-    </h3>
     <div
       id="carouselExampleCaptions"
       class="carousel slide h-100 shadow"
@@ -43,15 +40,13 @@
             <div class="img-container shadow">
               <img
                 :src="store.backendStorage + apartment.img_cover"
-                class="card-img-top"
+                class=""
                 alt="..."
               />
             </div>
           </router-link>
-          <div class="carousel-caption d-none d-md-block">
-            <div class="card-body">
-              <h5>{{ apartment.title }}</h5>
-            </div>
+          <div class="carousel-caption">
+            <h5>{{ apartment.title }}</h5>
           </div>
         </div>
         <!-- <div class="carousel-item">
@@ -109,6 +104,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 .carousel {
   backdrop-filter: blur(6px);
   padding: 24px 0;

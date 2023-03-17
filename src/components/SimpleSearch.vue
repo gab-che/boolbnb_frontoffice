@@ -4,46 +4,48 @@
       <!-- Autocomplete -->
 
       <div class="address mb-3">
-        <div class="row">
-          <div class="col-12">
-            <label class="text-warning fs-1 fw-normal" for=""
-              >Dicci dove vuoi andare, noi ti ci portiamo</label
-            >
-          </div>
-          <div class="offset-md-3 col-md-6 col-12 offset-sm-1 col-sm-10">
-            <input
-              type="text"
-              step="0.5"
-              autocomplete="off"
-              :class="
-                'mx-auto w-100 d-block mt-2 ' +
-                (isWrong ? 'error ' : 'search ') +
-                (searchField.length > 2 ? 'searching' : 'search')
-              "
-              name="address"
-              v-model="searchField"
-              @keyup="refreshSearch"
-            />
-            <div
-              :class="'error text-danger ' + (isWrong ? 'd-block' : 'd-none')"
-            >
-              C'è qualche problema con il tuo indirizzo, assicurati che non
-              abbia caratteri speciali e che tu abbia selezionato l'indirizzo
-              cliccandolo dal menù a tendina.
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <label class="text-warning" for="">
+                <h1>Dicci dove vuoi andare, noi ti ci portiamo</h1>
+              </label>
             </div>
-            <div class="addressList" v-if="searchField.length > 2">
-              <router-link
-                :value="i"
-                v-for="(item, i) in searchData"
-                :to="{
-                  name: 'Search',
-                  query: { city: item.address.freeformAddress },
-                }"
-                class="list-group-item list-group-item-action"
-                @click="choosenAddress(i)"
-              >
-                {{ item.address.freeformAddress }}
-              </router-link>
+            <div class="offset-md-3 col-md-6 col-12 offset-sm-1 col-sm-10">
+              <input
+                type="text"
+                step="0.5"
+                autocomplete="off"
+                :class="
+                  'w-100 d-block mt-2 ' +
+                  (isWrong ? 'error ' : 'search ') +
+                  (searchField.length > 2 ? 'searching' : 'search')
+                "
+                name="address"
+                v-model="searchField"
+                @keyup="refreshSearch"
+              />
+              <div :class="'text-danger ' + (isWrong ? 'd-block' : 'd-none')">
+                <p>
+                  C'è qualche problema con il tuo indirizzo, assicurati che non
+                  abbia caratteri speciali e che tu abbia selezionato
+                  l'indirizzo cliccandolo dal menù a tendina.
+                </p>
+              </div>
+              <div class="addressList" v-if="searchField.length > 2">
+                <router-link
+                  :value="i"
+                  v-for="(item, i) in searchData"
+                  :to="{
+                    name: 'Search',
+                    query: { city: item.address.freeformAddress },
+                  }"
+                  class="list-group-item list-group-item-action"
+                  @click="choosenAddress(i)"
+                >
+                  {{ item.address.freeformAddress }}
+                </router-link>
+              </div>
             </div>
           </div>
         </div>
@@ -145,15 +147,15 @@ export default {
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
   background-color: #fff;
-  outline-offset: 2px;
+  outline: 2px solid rgb(47, 34, 11);
   border: 2px solid rgb(208, 190, 25);
 }
 .error {
+  border: 2px solid rgb(201, 38, 38);
   border-radius: 12px;
   display: block;
 }
 .error:focus {
-  border: 2px solid rgb(201, 38, 38);
   outline: 2px solid rgb(201, 38, 38);
 }
 </style>
