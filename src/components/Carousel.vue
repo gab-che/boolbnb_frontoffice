@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid">
-    <h3 class="text-center text-white my-2">
+    <h3 class="text-center text-white mb-3">
       Alcuni appartamenti sponsorizzati
     </h3>
     <div
