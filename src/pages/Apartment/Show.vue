@@ -39,7 +39,7 @@ export default {
                     Il posto ha {{ store.singleApartment.n_rooms }} stanze, {{ store.singleApartment.n_beds }} posti letto e
                     {{ store.singleApartment.n_bathrooms }} bagni. ({{ store.singleApartment.square_meters }} mq)
                 </p>
-                <div class="testo m-4">
+                <div v-if="store.singleApartment.description" class="testo m-4">
                     <h4 class="giallo">Descrizione</h4>
                     <p>
                         {{ store.singleApartment.description }}
