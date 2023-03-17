@@ -59,94 +59,53 @@ export default {
           <div class="kilometers-input">
             <div>
               <label for="customRange1" class="form-label">Example range</label>
-              <input
-                type="range"
-                step="5"
-                min="5"
-                max="50"
-                class="form-range"
-                id="customRange1"
-                name="range"
-                v-model.lazy="store.advancedSearch.radius"
-              />
+              <input type="range" step="5" min="5" max="50" class="form-range" id="customRange1" name="range"
+                v-model.lazy="store.advancedSearch.radius" />
             </div>
             <div>
               <div>n kilometri:</div>
-              <div>{{ radius }}</div>
+              <div>{{ store.advancedSearch.radius }}</div>
             </div>
           </div>
           <div class="numbers-container">
             <div class="row">
               <div class="col-3">
                 <label class="form-label">Numero di stanze *</label>
-                <input
-                  type="number"
-                  step="1"
-                  min="0"
-                  max="255"
-                  v-model.lazy="store.advancedSearch.rooms"
-                  class="form-control mx-auto rounded-5"
-                />
+                <input type="number" step="1" min="0" max="255" v-model.lazy="store.advancedSearch.rooms"
+                  class="form-control mx-auto rounded-5" />
               </div>
               <div class="col-3">
                 <label class="form-label">Numero di letti *</label>
-                <input
-                  type="number"
-                  step="1"
-                  min="0"
-                  max="255"
-                  v-model.lazy="store.advancedSearch.beds"
-                  class="form-control mx-auto rounded-5"
-                />
+                <input type="number" step="1" min="0" max="255" v-model.lazy="store.advancedSearch.beds"
+                  class="form-control mx-auto rounded-5" />
               </div>
               <!-- <div class="col-3">
-                <label class="form-label">Numero di bagni *</label>
-                <input
-                  type="number"
-                  step="1"
-                  min="0"
-                  max="255"
-                  v-model.lazy="bathrooms"
-                  class="form-control mx-auto rounded-5"
-                />
-              </div> -->
+                      <label class="form-label">Numero di bagni *</label>
+                      <input
+                        type="number"
+                        step="1"
+                        min="0"
+                        max="255"
+                        v-model.lazy="bathrooms"
+                        class="form-control mx-auto rounded-5"
+                      />
+                    </div> -->
               <div class="col-3">
                 <label class="form-label">Numero di metri quadri *</label>
-                <input
-                  type="number"
-                  step="0.5"
-                  min="30"
-                  max="300000"
-                  v-model.lazy="store.advancedSearch.sqrMeters"
-                  class="form-control mx-auto rounded-5"
-                />
+                <input type="number" step="0.5" min="30" max="300000" v-model.lazy="store.advancedSearch.sqrMeters"
+                  class="form-control mx-auto rounded-5" />
               </div>
             </div>
           </div>
           <div class="services-modal-container">
             <div class="row g-2">
-              <div
-                v-for="(service, i) in store.allServices"
-                :key="i"
-                class="col-sm-12 col-md-6 col-lg-3 px-0 d-flex justify-content-start"
-              >
-                <div
-                  class="m-0 form-check form-switch d-flex justify-content-center align-items-center"
-                >
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    :id="'serviceCheckbox_' + { i }"
-                    v-model="store.advancedSearch.services"
-                    name="services[]"
-                  />
-                  <label
-                    class="form-check-label text-start"
-                    :for="'serviceCheckbox_' + { i }"
-                  >
-                    <div
-                      class="d-flex justify-content-center align-items-center"
-                    >
+              <div v-for="(service, i) in store.allServices" :key="i"
+                class="col-sm-12 col-md-6 col-lg-3 px-0 d-flex justify-content-start">
+                <div class="m-0 form-check form-switch d-flex justify-content-center align-items-center">
+                  <input class="form-check-input" type="checkbox" :id="'serviceCheckbox_' + { i }"
+                    v-model="store.advancedSearch.services" name="services[]" />
+                  <label class="form-check-label text-start" :for="'serviceCheckbox_' + { i }">
+                    <div class="d-flex justify-content-center align-items-center">
                       <div class="icon-width">
                         <i :class="service.icon + ' text-secondary px-3'"></i>
                       </div>
@@ -172,6 +131,7 @@ export default {
   height: 100vh;
   backdrop-filter: brightness(0.5);
 }
+
 .my-modal {
   position: fixed;
   z-index: 200;
@@ -181,13 +141,16 @@ export default {
   padding: 20px;
   transform: translate(-50%, 0);
   filter: drop-shadow(8px 8px 16px rgb(74, 48, 15));
+
   .my-modal-content {
     background-color: rgb(197, 175, 67);
     border-radius: 16px;
     padding: 16px;
+
     .kilometers-input {
       display: flex;
       gap: 16px;
+
       div {
         flex-grow: 1;
       }

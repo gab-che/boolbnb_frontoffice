@@ -40,33 +40,36 @@ export default {
 </script>
 
 <template>
-  <div v-if="store.allServices && store.nearestApartments" class="all-container">
+  <div v-if="store.nearestApartments" class="all-container">
     <TheHeader></TheHeader>
     <!-- <div class="services-container p-2">
-                <div class="row g-2">
-                  <div
-                    class="col-lg-3 col-md-4 col-sm-8"
-                    v-for="service in store.allServices"
-                  >
-                    <a href="#" class="text-white text-decoration-none">
-                      {{ service.name }}
-                      <div class="ms-auto"><i :class="service.icon"></i></div>
-                    </a>
-                  </div>
-                </div>
-              </div> -->
+                              <div class="row g-2">
+                                <div
+                                class="col-lg-3 col-md-4 col-sm-8"
+                                v-for="service in store.allServices"
+                                >
+                                <a href="#" class="text-white text-decoration-none">
+                                  {{ service.name }}
+                                  <div class="ms-auto"><i :class="service.icon"></i></div>
+                                </a>
+                              </div>
+                            </div>
+                          </div> -->
 
-    <ul v-for="apartment in store.nearestApartments">
+    <ul v-if="store.nearestApartments.length != 0" class="list-unstyled" v-for="apartment in store.nearestApartments">
       <li>{{ apartment.title }}</li>
       <li>
         <div class="img-container">
           <img :src="'http://localhost:8000/storage/' + apartment.img_cover" alt="" class="img-fluid">
         </div>
       </li>
+      <li>
+        <hr>
+      </li>
     </ul>
-    <div v-if="store.nearestApartments.length === 0">
-      <h3 class="banner banner-warning">Non hai risultati</h3>
-    </div>
+  </div>
+  <div v-else>
+    <h3 class="banner banner-warning">Non hai risultati</h3>
   </div>
 </template>
 
