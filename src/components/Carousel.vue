@@ -1,156 +1,131 @@
 <template>
   <div class="container-fluid">
+    <h3 class="text-center">Alcuni appartamenti sponsorizzati</h3>
     <div
-      class="carousel mx-auto"
-      @mouseover="transitioning = true"
-      @mouseleave="transitioning = false"
+      id="carouselExampleCaptions"
+      class="carousel slide h-100 shadow"
+      data-bs-ride="false"
     >
-      <div class="inner" ref="inner" :style="innerStyles">
-        <div class="card" v-for="card in cards" :key="card">
-          {{ card }}
-        </div>
+      <div class="carousel-indicators">
+        <button
+          type="button"
+          data-bs-target="#carouselExampleCaptions"
+          data-bs-slide-to="0"
+          class="active"
+          aria-current="true"
+          aria-label="Slide 1"
+        ></button>
+        <button
+          type="button"
+          data-bs-target="#carouselExampleCaptions"
+          data-bs-slide-to="1"
+          aria-label="Slide 2"
+        ></button>
+        <button
+          type="button"
+          data-bs-target="#carouselExampleCaptions"
+          data-bs-slide-to="2"
+          aria-label="Slide 3"
+        ></button>
       </div>
-    </div>
-    <div class="btn-container text-center">
-      <button class="btn btn-primary btn-sm" @click="prev">prev</button>
-      <button class="btn btn-primary btn-sm" @click="next">next</button>
+      <div class="carousel-inner">
+        <div
+          v-for="(apartment, i) in store.sponsoredApartments"
+          :key="i"
+          :class="'carousel-item ' + (i === 0 ? 'active' : '')"
+        >
+          <router-link
+            :to="{ path: 'appartamenti/:id' + apartment.id }"
+            class="text-white text-decoration-none"
+          >
+            <div class="img-container">
+              <img
+                :src="store.backendStorage + apartment.img_cover"
+                class="card-img-top"
+                alt="..."
+              />
+            </div>
+          </router-link>
+          <div class="carousel-caption d-none d-md-block">
+            <div class="card-body">
+              <h5>{{ apartment.title }}</h5>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="carousel-item">
+          <img src="..." class="d-block w-100" alt="..." />
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Second slide label</h5>
+            <p>Some representative placeholder content for the second slide.</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="..." class="d-block w-100" alt="..." />
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Third slide label</h5>
+            <p>Some representative placeholder content for the third slide.</p>
+          </div>
+        </div> -->
+      </div>
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carouselExampleCaptions"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carouselExampleCaptions"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
     </div>
   </div>
 </template>
 
 <script>
+import path from "path";
+import { store, fetchSponsoredApartments } from "../store";
+
 export default {
   data() {
-    return {
-      cards: [1, 2, 3, 4, 5, 6, 7, 8],
-      innerStyles: {},
-      step: "",
-      transitioning: false,
-    };
+    return { store };
   },
 
   mounted() {
-    this.setStep();
-    this.resetTranslate();
-    this.defaultNext();
+    fetchSponsoredApartments();
   },
 
-  methods: {
-    setStep() {
-      const innerWidth = this.$refs.inner.scrollWidth;
-      const totalCards = this.cards.length;
-      this.step = `${innerWidth / totalCards}px`;
-    },
-
-    next() {
-      if (this.transitioning) return;
-
-      this.transitioning = true;
-
-      this.moveLeft();
-
-      this.afterTransition(() => {
-        const card = this.cards.shift();
-        this.cards.push(card);
-        this.resetTranslate();
-        this.transitioning = false;
-      });
-    },
-    defaultNext() {
-      setInterval(() => {
-        if (this.transitioning) return;
-
-        this.transitioning = true;
-
-        this.moveLeft();
-
-        this.afterTransition(() => {
-          const card = this.cards.shift();
-          this.cards.push(card);
-          this.resetTranslate();
-          if (this.transitioning) {
-            this.transitioning = false;
-          }
-        });
-      }, 7000);
-    },
-
-    prev() {
-      if (this.transitioning) return;
-
-      this.transitioning = true;
-
-      this.moveRight();
-
-      this.afterTransition(() => {
-        const card = this.cards.pop();
-        this.cards.unshift(card);
-        this.resetTranslate();
-        this.transitioning = false;
-      });
-    },
-
-    moveLeft() {
-      this.innerStyles = {
-        transform: `translateX(-${this.step})
-                      translateX(-${this.step})`,
-      };
-    },
-
-    moveRight() {
-      this.innerStyles = {
-        transform: `translateX(${this.step})
-                      translateX(-${this.step})`,
-      };
-    },
-
-    afterTransition(callback) {
-      const listener = () => {
-        callback();
-        this.$refs.inner.removeEventListener("transitionend", listener);
-      };
-      this.$refs.inner.addEventListener("transitionend", listener);
-    },
-
-    resetTranslate() {
-      this.innerStyles = {
-        transition: "none",
-        transform: `translateX(-${this.step})`,
-      };
-    },
-  },
+  methods: {},
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .carousel {
-  margin-top: 32px;
-  width: 75vw;
-  overflow: hidden;
+  backdrop-filter: blur(6px);
+  padding: 24px 0;
+  border-radius: 8px;
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0) 63%,
+    rgba(255, 255, 255, 0.43469887955182074) 100%
+  );
 }
-
-.inner {
-  transition: transform 1s;
-  white-space: nowrap;
-}
-
-.card {
-  width: 320px;
-  margin-right: 10px;
-  display: inline-flex;
-
-  /* optional */
-  height: 240px;
-  background-color: #39b1bd;
-  color: white;
-  border-radius: 4px;
-  align-items: center;
+.img-container {
+  width: 66%;
+  display: flex;
   justify-content: center;
-}
-
-/* optional */
-button {
-  margin-right: 5px;
-  margin-top: 10px;
+  align-items: flex-start;
+  overflow: hidden;
+  margin: 0 auto;
+  height: 100%;
 }
 </style>

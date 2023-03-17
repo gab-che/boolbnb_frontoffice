@@ -6,6 +6,7 @@ export const store = reactive({
   backendMessages: "http://localhost:8000/api/messages/",
   backendVisuals: "http://localhost:8000/api/visuals/",
   backendservices: "http://localhost:8000/api/services/",
+  backendStorage: "http://localhost:8000/storage/",
 
   allApartments: [],
   nearestApartments: [],
@@ -17,7 +18,7 @@ export const store = reactive({
   currentPage: 1,
   totalPages: 1,
 
-  simpleSearch: '',
+  simpleSearch: "",
   advancedSearch: {
     radius: 50,
     beds: 3,
