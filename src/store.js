@@ -74,10 +74,10 @@ export function fetchSponsoredApartments() {
  * dopo ricerca semplice (es. solo città)
  */
 export async function fetchNearestApartments(cityToSearch) {
+  store.nearestApartments = [];
   await axios
     .get(store.backendApartments, {
       params: {
-        //input da passare con v-model
         city: cityToSearch,
       },
     })

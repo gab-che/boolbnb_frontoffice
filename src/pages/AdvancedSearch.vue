@@ -46,43 +46,54 @@ export default {
 
 <template>
   <TheHeader></TheHeader>
-  <div v-if="store.advancedApartments.length != 0" class="all-container">
+  <div class="container">
 
-    <ul v-if="store.advancedApartments.length != 0" class="list-unstyled" v-for="apartment in store.advancedApartments">
-      <li>{{ apartment.title }}</li>
-      <li>
+
+
+    <ul v-if="store.advancedApartments.length != 0" class="list-unstyled"
+      v-for="apartment, i in store.advancedApartments">
+      <li :class="i % 2 === 0 ? 'bg-light' : ''">
+
+        {{ apartment.title }}
         <div class="img-container">
           <img :src="'http://localhost:8000/storage/' + apartment.img_cover" alt="" class="img-fluid">
         </div>
-      </li>
-      <li>
         <hr>
       </li>
+
     </ul>
-  </div>
-  <div v-else-if="store.nearestApartments" class="all-container">
-    <ul v-if="store.nearestApartments.length != 0" class="list-unstyled" v-for="apartment in store.nearestApartments">
+    <ul v-else-if="store.nearestApartments.length != 0" class="list-unstyled"
+      v-for="apartment in store.nearestApartments">
+
       <li>{{ apartment.title }}</li>
+
       <li>
+
         <div class="img-container">
+
           <img :src="'http://localhost:8000/storage/' + apartment.img_cover" alt="" class="img-fluid">
+
         </div>
+
       </li>
+
       <li>
+
         <hr>
+
       </li>
+
     </ul>
-  </div>
-  <!-- <div v-else class="all-container">
-      ciao
+    <div v-else>
+      <h3 class="banner banner-warning">Non hai risultati</h3>
     </div>
-    <h3 class="banner banner-warning">Non hai risultati</h3> -->
+
+  </div>
 </template>
 
 <style lang="scss" scoped>
 .img-container {
   width: 300px;
-  height: 300px;
 }
 
 .all-container {
