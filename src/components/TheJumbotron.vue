@@ -18,8 +18,6 @@ export default {
   </div>
 </template>
 <style lang="scss" scoped>
-.container {
-}
 h1 {
   color: rgb(244, 194, 30);
 }
@@ -28,9 +26,28 @@ img {
   width: 168px;
 }
 .carousel-container {
-  height: 45%;
-  width: 66%;
-  margin: 2em auto;
+  height: 50%;
+  margin: 0 auto;
+}
+@media screen and (min-width: 950px) {
+  .carousel-container {
+    height: 450px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .carousel-container {
+    width: 1180px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .jumbo {
+    height: calc(100vh - 72px);
+  }
+}
+@media screen and (max-width: 991px) {
+  .jumbo {
+    height: calc(100vh - 61.9px);
+  }
 }
 .jumbo {
   background-image: url("../../bg.jpg");
@@ -42,6 +59,5 @@ img {
   background-clip: initial;
   background-color: initial;
   background-size: cover;
-  height: calc(100vh - 72px);
 }
 </style>
