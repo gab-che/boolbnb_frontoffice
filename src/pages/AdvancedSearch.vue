@@ -47,46 +47,55 @@ export default {
 <template>
   <TheHeader></TheHeader>
   <div class="container">
+    <div class="apartment row justify-content-center">
 
-
-
-    <ul v-if="store.advancedApartments.length != 0" class="list-unstyled"
-      v-for="apartment, i in store.advancedApartments">
-      <li :class="i % 2 === 0 ? 'bg-light' : ''">
-
-        {{ apartment.title }}
-        <div class="img-container">
-          <img :src="'http://localhost:8000/storage/' + apartment.img_cover" alt="" class="img-fluid">
+      <router-link v-if="store.advancedApartments.length != 0"
+        :to="{ name: 'apartments.show', params: { id: apartment.id } }" v-for="apartment, i in store.advancedApartments"
+        class="col-md-4 text-decoration-none">
+        <div class="card-container">
+          <div class="img-container h-50 w-100">
+            <img class="w-100 h-100" :src="'http://localhost:8000/storage/' + apartment.img_cover" alt="user" />
+          </div>
+          <h3>{{ apartment.title }}</h3>
+          <h6></h6>
+          <p v-if="apartment.description">{{ apartment.description }}</p>
+          <div class="skills">
+            <h6>Servizi</h6>
+            <ul>
+              <li v-if="apartment.services" v-for="item in apartment.services">{{ item.name }}</li>
+            </ul>
+          </div>
         </div>
-        <hr>
-      </li>
+      </router-link>
 
-    </ul>
-    <ul v-else-if="store.nearestApartments.length != 0" class="list-unstyled"
-      v-for="apartment in store.nearestApartments">
 
-      <li>{{ apartment.title }}</li>
-
-      <li>
-
-        <div class="img-container">
-
-          <img :src="'http://localhost:8000/storage/' + apartment.img_cover" alt="" class="img-fluid">
-
+      <router-link v-else-if="store.nearestApartments.length != 0"
+        :to="{ name: 'apartments.show', params: { id: apartment.id } }" v-for="apartment, i in store.nearestApartments"
+        class="col-md-4 text-decoration-none">
+        <div class="card-container">
+          <div class="img-container h-50 w-100">
+            <img class="w-100 h-100" :src="'http://localhost:8000/storage/' + apartment.img_cover" alt="user" />
+          </div>
+          <h3>{{ apartment.title }}</h3>
+          <h6></h6>
+          <p v-if="apartment.description">{{ apartment.description }}</p>
+          <div class="skills">
+            <h6>Servizi</h6>
+            <ul>
+              <li v-if="apartment.services" v-for="item in apartment.services">{{ item.name }}</li>
+            </ul>
+          </div>
         </div>
+      </router-link>
+      <div v-else class="error">
+        <h3> Non ci sono risultati</h3>
+      </div>
 
-      </li>
 
-      <li>
-
-        <hr>
-
-      </li>
-
-    </ul>
-    <div v-else>
-      <h3 class="banner banner-warning">Non hai risultati</h3>
     </div>
+
+
+
 
   </div>
 </template>
