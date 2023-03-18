@@ -149,6 +149,7 @@ export default {
   background-color: #fff;
   outline: 2px solid rgb(47, 34, 11);
   border: 2px solid rgb(208, 190, 25);
+  transition: all 2s ease;
 }
 .error {
   border: 2px solid rgb(201, 38, 38);

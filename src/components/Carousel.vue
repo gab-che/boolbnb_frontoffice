@@ -43,26 +43,13 @@
                 class=""
                 alt="..."
               />
+              <div class="banner">Dai un'occhiata!</div>
             </div>
           </router-link>
           <div class="carousel-caption">
             <h5>{{ apartment.title }}</h5>
           </div>
         </div>
-        <!-- <div class="carousel-item">
-          <img src="..." class="d-block w-100" alt="..." />
-          <div class="carousel-caption d-none d-md-block">
-            <h5>Second slide label</h5>
-            <p>Some representative placeholder content for the second slide.</p>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <img src="..." class="d-block w-100" alt="..." />
-          <div class="carousel-caption d-none d-md-block">
-            <h5>Third slide label</h5>
-            <p>Some representative placeholder content for the third slide.</p>
-          </div>
-        </div> -->
       </div>
       <button
         class="carousel-control-prev"
@@ -120,6 +107,12 @@ img {
     rgba(255, 255, 255, 0) 63%,
     rgba(255, 255, 255, 0.43469887955182074) 100%
   );
+  transition: all 0.5s ease;
+}
+@media screen and (min-width: 1240px) {
+  .carousel {
+    margin-top: 96px;
+  }
 }
 .img-container {
   width: 66%;
@@ -130,5 +123,37 @@ img {
   margin: 0 auto;
   height: 100%;
   border-radius: 12px;
+  position: relative;
+  transition: all 0.5s ease;
+
+  @media screen and (min-width: 720px) {
+    .banner {
+      top: 48px;
+      right: -96px;
+      padding: 2px 96px;
+      transform: rotate(45deg);
+      width: fit-content;
+    }
+  }
+  @media screen and (min-width: 0px) and (max-width: 719.9px) {
+    .banner {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      width: 100%;
+      padding: 2px;
+    }
+  }
+  .banner {
+    text-align: center;
+    position: absolute;
+    background-color: rgb(244, 194, 30);
+    color: rgb(53, 34, 12);
+    border: 2px dashed rgb(53, 34, 12);
+    font-weight: 600;
+    border-top-right-radius: 12px;
+    border-top-left-radius: 12px;
+    transition: all 0.5s ease;
+  }
 }
 </style>
