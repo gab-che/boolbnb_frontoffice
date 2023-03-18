@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid">
+  <div class="container-fluid" @mousehover="nextImg()" @mouseleave="nextImg()">
     <div
       id="carouselExampleCaptions"
       class="carousel slide h-100 shadow"
@@ -73,14 +73,24 @@ export default {
     return {
       store,
       currentIndex: 0,
+      hovering: false,
     };
   },
-
+  methods: {
+    nextImg() {
+      let carousel = setInterval(() => {
+        const nextBtn = document.querySelector(".carousel-control-next");
+        nextBtn.click();
+      }, 1000);
+      if (this.hovering) {
+        clearInterval(carousel);
+      }
+    },
+  },
   mounted() {
+    this.nextImg();
     fetchSponsoredApartments();
   },
-
-  methods: {},
 };
 </script>
 
@@ -105,14 +115,15 @@ img {
   .carousel-caption {
     width: fit-content;
     margin: auto;
-    padding: 2px 8px;
+    padding: 2px 16px;
     border: 1px solid rgb(53, 34, 12);
     border-radius: 12px;
     backdrop-filter: blur(2px);
     background-color: rgb(53, 34, 12, 0.6);
     h5 {
       margin: 0;
-      color: rgb(244, 194, 30);
+      // color: rgb(244, 194, 30);
+      color: whitesmoke;
     }
   }
 }
