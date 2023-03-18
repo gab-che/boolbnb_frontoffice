@@ -81,7 +81,7 @@ export default {
       let carousel = setInterval(() => {
         const nextBtn = document.querySelector(".carousel-control-next");
         nextBtn.click();
-      }, 1000);
+      }, 6000);
       if (this.hovering) {
         clearInterval(carousel);
       }
