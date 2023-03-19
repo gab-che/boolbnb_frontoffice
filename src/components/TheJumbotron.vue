@@ -7,15 +7,17 @@ export default {
 };
 </script>
 <template>
-  <div class="container-fluid jumbo">
-    <div class="container pt-2 text-center">
-      <img src="../../logo_nobg.png" alt="" />
+  <Transition name="fade" appear>
+    <div class="container-fluid jumbo">
+      <div class="container pt-2 text-center">
+        <img src="../../logo_nobg.png" alt="" />
+      </div>
+      <SimpleSearch></SimpleSearch>
+      <div class="carousel-container">
+        <Carousel></Carousel>
+      </div>
     </div>
-    <SimpleSearch></SimpleSearch>
-    <div class="carousel-container">
-      <Carousel></Carousel>
-    </div>
-  </div>
+  </Transition>
 </template>
 <style lang="scss" scoped>
 h1 {

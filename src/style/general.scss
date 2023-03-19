@@ -1,9 +1,38 @@
 @use "bootstrap/scss/bootstrap";
 @use "@fortawesome/fontawesome-free/css/all.min.css";
+.loader {
+  .whole-page-overlay {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+    height: 100% !important;
+    z-index: 1050;
+    background-color: #efefef;
+  }
+
+  .img-container {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    position: relative;
+  }
+
+  .cover {
+    align-self: end;
+    height: 20%;
+    position: absolute;
+    background: #efefef;
+    right: 0px;
+    width: 100%;
+  }
+}
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.5s ease;
+  transition: opacity 1s ease;
 }
 
 .fade-enter-from,
@@ -15,28 +44,12 @@
   Enter and leave animations can use different
   durations and timing functions.
 */
-.slide-fade-enter-active {
-  transition: all 0.3s ease-out;
-}
-
-.slide-fade-leave-active {
-  transition: all 0.5s cubic-bezier(1, 0.5, 0.8, 1);
-}
-
-.slide-fade-enter-from,
-.slide-fade-leave-to {
-  transform: translateX(20px);
-  opacity: 0;
-}
 
 nav {
   height: 72px;
 }
 
-
-
 .apartment {
-
   h3 {
     margin: 10px 0;
   }
@@ -70,7 +83,7 @@ nav {
 
   .card-container .pro {
     color: #ffd579;
-    background-color: #FEBB0B;
+    background-color: #febb0b;
     border-radius: 3px;
     font-size: 14px;
     font-weight: bold;
@@ -80,10 +93,9 @@ nav {
     left: 30px;
   }
 
-
   button.primary {
-    background-color: #C400D7;
-    border: 1px solid #C400D7;
+    background-color: #c400d7;
+    border: 1px solid #c400d7;
     border-radius: 3px;
     color: #fff;
     font-family: Montserrat, sans-serif;
@@ -93,7 +105,7 @@ nav {
 
   button.primary.ghost {
     background-color: transparent;
-    color: #C400D7;
+    color: #c400d7;
   }
 
   .skills {

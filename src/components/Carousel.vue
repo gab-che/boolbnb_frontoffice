@@ -82,8 +82,6 @@ export default {
   },
   methods: {
     nextImg() {
-      console.log("abda");
-      const container = document.querySelector(".container-fluid");
       this.carousel = setInterval(() => {
         const nextBtn = document.querySelector(".carousel-control-next");
         nextBtn.click();

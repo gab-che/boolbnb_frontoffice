@@ -1,55 +1,57 @@
 <template>
   <TheHeader></TheHeader>
-  <div class="container-fluid">
-    <div class="row justify-content-between pt-4">
-      <div class="col col-sm-4 col-lg-2" v-for="me in us">
-        <div class="col-content">
-          <div class="card shadow">
-            <img v-bind:src="me.img" class="card-img-top" alt="..." />
-            <div class="card-body">
-              <h5 class="card-title">
-                {{ me.name }}
-                <span class="text-secondary">{{ me.surname }}</span>
-              </h5>
+  <transition name="fade" appear>
+    <div class="container-fluid">
+      <div class="row justify-content-between pt-4">
+        <div class="col col-sm-4 col-lg-2" v-for="me in us">
+          <div class="col-content">
+            <div class="card shadow">
+              <img v-bind:src="me.img" class="card-img-top" alt="..." />
+              <div class="card-body">
+                <h5 class="card-title">
+                  {{ me.name }}
+                  <span class="text-secondary">{{ me.surname }}</span>
+                </h5>
 
-              <div class="button-container">
-                <button
-                  @click="show = !show"
-                  class="btn btn-dark rounded-circle"
-                >
-                  <div class="icon-container">
-                    <i class="fa-solid fa-share-nodes ratio=1"></i>
-                  </div>
-                </button>
-                <transition name="links">
-                  <div class="transition-container" v-if="show">
-                    <div class="link-container">
-                      <a class="" :href="me.gitLink"
-                        ><div class="icon-container">
-                          <i class="fa-brands fa-github"></i></div
-                      ></a>
+                <div class="button-container">
+                  <button
+                    @click="show = !show"
+                    class="btn btn-dark rounded-circle"
+                  >
+                    <div class="icon-container">
+                      <i class="fa-solid fa-share-nodes ratio=1"></i>
                     </div>
-                    <div class="link-container">
-                      <a :href="me.linkedIn" class=""
-                        ><div class="icon-container">
-                          <i class="fa-brands fa-linkedin"></i></div
-                      ></a>
+                  </button>
+                  <transition name="links">
+                    <div class="transition-container" v-if="show">
+                      <div class="link-container">
+                        <a class="" :href="me.gitLink"
+                          ><div class="icon-container">
+                            <i class="fa-brands fa-github"></i></div
+                        ></a>
+                      </div>
+                      <div class="link-container">
+                        <a :href="me.linkedIn" class=""
+                          ><div class="icon-container">
+                            <i class="fa-brands fa-linkedin"></i></div
+                        ></a>
+                      </div>
+                      <div class="link-container">
+                        <a :href="me.gmail" class=""
+                          ><div class="icon-container">
+                            <i class="fa-solid fa-envelope"></i></div
+                        ></a>
+                      </div>
                     </div>
-                    <div class="link-container">
-                      <a :href="me.gmail" class=""
-                        ><div class="icon-container">
-                          <i class="fa-solid fa-envelope"></i></div
-                      ></a>
-                    </div>
-                  </div>
-                </transition>
+                  </transition>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </transition>
 </template>
 <style lang="scss" scoped>
 .button-container {
