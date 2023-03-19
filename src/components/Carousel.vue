@@ -1,5 +1,9 @@
 <template>
-  <div class="container-fluid" @mousehover="nextImg()" @mouseleave="nextImg()">
+  <div
+    class="container-fluid"
+    @mouseenter="myStopFunction()"
+    @mouseleave="nextImg()"
+  >
     <div
       id="carouselExampleCaptions"
       class="carousel slide h-100 shadow"
@@ -65,7 +69,6 @@
 </template>
 
 <script>
-import path from "path";
 import { store, fetchSponsoredApartments } from "../store";
 
 export default {
@@ -74,17 +77,20 @@ export default {
       store,
       currentIndex: 0,
       hovering: false,
+      carousel: "",
     };
   },
   methods: {
     nextImg() {
-      let carousel = setInterval(() => {
+      console.log("abda");
+      const container = document.querySelector(".container-fluid");
+      this.carousel = setInterval(() => {
         const nextBtn = document.querySelector(".carousel-control-next");
         nextBtn.click();
       }, 6000);
-      if (this.hovering) {
-        clearInterval(carousel);
-      }
+    },
+    myStopFunction() {
+      clearInterval(this.carousel);
     },
   },
   mounted() {
