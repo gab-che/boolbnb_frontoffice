@@ -149,6 +149,7 @@ img {
   border-radius: 12px;
   position: relative;
   transition: all 0.5s ease;
+  border: 1px solid rgb(53, 34, 12, 0.9);
 
   @media screen and (min-width: 720px) {
     .banner {
