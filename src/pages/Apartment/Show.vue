@@ -27,7 +27,7 @@ export default {
 
 <template>
     <TheHeader></TheHeader>
-    <div class="container mb-5 pb-5">
+    <div v-if="this.store.singleApartment.title" class="container mb-5 pb-5">
         <h1 class="p-5 text-center">{{ store.singleApartment.title }}</h1>
 
 
@@ -89,10 +89,17 @@ export default {
             </Map>
         </div>
 
-
-
-
-
+    </div>
+    <div v-else class="container">
+        <div class="row py-4">
+            <div class="col-8 col-md-4 m-auto d-flex justify-content-center">
+                <div>
+                    <img src="http://127.0.0.1:8000/not-existing.webp" alt="no trespassing citizen kane" class="img-fluid">
+                </div>
+                
+            </div>
+        </div>
+        <h2 class="text-center">L'appartamento non esiste</h2>
     </div>
 </template>
 
