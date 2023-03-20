@@ -1,7 +1,7 @@
 <template>
   <TheHeader></TheHeader>
   <transition name="fade" appear>
-    <div class="container-fluid container-md px-5 p-md-0">
+    <div class="container-fluid container-md px-5 p-md-0 reduce">
       <div class="row my-5" v-for="(me, i) in us" :key="i">
         <div class="col-12 shadow-lg px-0">
           <div class="row">
@@ -85,6 +85,12 @@
     border-top-left-radius: 12px;
     border-bottom-left-radius: 12px;
     border-right: 0px;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .reduce {
+    width: 50%;
+    margin: auto;
   }
 }
 .img-container {

@@ -41,9 +41,9 @@ img {
     width: 1180px;
   }
 }
+
 .jumbo {
   height: calc(100vh - 72px);
-
   background-image: url("../../bg.jpg");
   background-position-x: center;
   background-position-y: center;
