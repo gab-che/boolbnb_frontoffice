@@ -61,17 +61,15 @@ export default {
 </script>
 
 <template>
-  <transition name="fade" appear>
-    <div v-if="loader" class="loader">
-      <div class="whole-page-overlay d-block" id="whole_page_loader">
-        <div class="img-container w-100 h-100">
-          <div class="cover"></div>
-          <img class="center-loader w-100 h-100 img-fluid"
-            src="https://cdn.dribbble.com/users/729829/screenshots/3499449/media/fb22fc6c15045b2a7e5bb6329965e574.gif" />
-        </div>
+  <div v-if="loader" class="loader">
+    <div class="whole-page-overlay d-block" id="whole_page_loader">
+      <div class="img-container w-100 h-100">
+        <div class="cover"></div>
+        <img class="center-loader w-100 h-100 img-fluid"
+          src="https://cdn.dribbble.com/users/729829/screenshots/3499449/media/fb22fc6c15045b2a7e5bb6329965e574.gif" />
       </div>
     </div>
-  </transition>
+  </div>
   <transition name="fade" appear>
     <div v-if="!loader">
       <TheHeader></TheHeader>
@@ -86,12 +84,10 @@ export default {
               <div class="img-container h-50 w-100">
                 <img class="w-100 h-100" :src="'http://localhost:8000/storage/' + apartment.img_cover" alt="user" />
               </div>
-
               <div class="d-flex justify-content-center flex-grow-1 align-items-center">
                 <h5 class="p-1 mb-0 pb-0">{{ apartment.title }}</h5>
               </div>
 
-              <!-- <h6></h6> -->
 
               <p class="p-2" v-if="apartment.description">{{ apartment.description.substring(0, 100) }} <span
                   class="fw-bold">...</span>
@@ -111,8 +107,6 @@ export default {
               <div class="d-flex justify-content-center flex-grow-1 align-items-center">
                 <h5 class="p-1 mb-0 pb-0">{{ apartment.title }}</h5>
               </div>
-
-              <!-- <h6></h6> -->
 
               <p v-if="apartment.description" class="p-2">{{ apartment.description.substring(0, 100) }} <span
                   class="fw-bold">...</span></p>

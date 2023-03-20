@@ -83,7 +83,30 @@ export async function fetchNearestApartments(cityToSearch) {
       },
     })
     .then((resp) => {
-      store.nearestApartments = resp.data;
+      const finalList = [];
+
+
+      resp.data.forEach(element => {
+        if (element.promotions.length && element.promotions[0].id === 3) {
+          finalList.push(element)
+        }
+      });
+      resp.data.forEach(element => {
+        if (element.promotions.length && element.promotions[0].id === 2) {
+          finalList.push(element)
+        }
+      });
+      resp.data.forEach(element => {
+        if (element.promotions.length && element.promotions[0].id === 1) {
+          finalList.push(element)
+        }
+      });
+      resp.data.forEach(element => {
+        if (!element.promotions.length) {
+          finalList.push(element);
+        }
+      })
+      store.nearestApartments = finalList;
     });
 }
 
