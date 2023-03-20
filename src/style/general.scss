@@ -1,5 +1,6 @@
 @use "bootstrap/scss/bootstrap";
 @use "@fortawesome/fontawesome-free/css/all.min.css";
+
 .loader {
   .whole-page-overlay {
     left: 0;
@@ -38,6 +39,10 @@
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
+}
+
+.mycol {
+  aspect-ratio: 1/1;
 }
 
 /*
@@ -79,6 +84,7 @@ nav {
     text-align: center;
     margin: 20px 0;
     overflow: hidden;
+    height: 100%;
   }
 
   .card-container .pro {

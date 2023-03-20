@@ -1,5 +1,5 @@
 <script>
-import { store, fetchNearestApartments, fetchServices } from "../store";
+import { store, fetchNearestApartments, fetchServices, fetchAdvancedSearchApartments } from "../store";
 import axios from "axios";
 // import ModalForSearch from "../components/ModalForSearch.Vue";
 import TheHeader from "../components/TheHeader.vue";
@@ -27,6 +27,23 @@ export default {
         store.nearestApartments = momentanianApartments;
       }
     },
+    fetchAdvancedSearchApartments() {
+      axios
+        .get(store.backendApartments, {
+          params: {
+            place: this.$route.query.city,
+            radius: store.advancedSearch.radius * 1000,
+            beds: store.advancedSearch.beds,
+            rooms: store.advancedSearch.rooms,
+            sqrMeters: store.advancedSearch.sqrMeters,
+            services: JSON.stringify(store.advancedSearch.services),
+          },
+        })
+        .then((resp) => {
+          console.log(resp.data);
+          store.advancedApartments = resp.data;
+        });
+    }
   },
   computed: {},
   created() {
@@ -49,10 +66,8 @@ export default {
       <div class="whole-page-overlay d-block" id="whole_page_loader">
         <div class="img-container w-100 h-100">
           <div class="cover"></div>
-          <img
-            class="center-loader w-100 h-100 img-fluid"
-            src="https://cdn.dribbble.com/users/729829/screenshots/3499449/media/fb22fc6c15045b2a7e5bb6329965e574.gif"
-          />
+          <img class="center-loader w-100 h-100 img-fluid"
+            src="https://cdn.dribbble.com/users/729829/screenshots/3499449/media/fb22fc6c15045b2a7e5bb6329965e574.gif" />
         </div>
       </div>
     </div>
@@ -62,76 +77,45 @@ export default {
       <TheHeader></TheHeader>
 
       <div class="container">
-        <div class="apartment row justify-content-center">
-          <router-link
-            v-if="store.advancedApartments.length != 0"
+        <div class="apartment g-3 py-5 row justify-content-center">
+          <router-link v-if="store.advancedApartments.length != 0"
             :to="{ name: 'apartments.show', params: { id: apartment.id } }"
             v-for="(apartment, i) in store.advancedApartments"
-            class="col-md-4 text-decoration-none"
-          >
-            <div class="card-container">
+            class="col-lg-3 col-md-4 col-sm-6 col-8 d-flex justify-content-center text-decoration-none">
+            <div class="card-container d-flex flex-grow-1 flex-column">
               <div class="img-container h-50 w-100">
-                <img
-                  class="w-100 h-100"
-                  :src="'http://localhost:8000/storage/' + apartment.img_cover"
-                  alt="user"
-                />
+                <img class="w-100 h-100" :src="'http://localhost:8000/storage/' + apartment.img_cover" alt="user" />
               </div>
 
-              <h3>{{ apartment.title }}</h3>
-
-              <h6></h6>
-
-              <p v-if="apartment.description">{{ apartment.description }}</p>
-
-              <div class="skills">
-                <h6>Servizi</h6>
-
-                <ul>
-                  <li
-                    v-if="apartment.services"
-                    v-for="item in apartment.services"
-                  >
-                    {{ item.name }}
-                  </li>
-                </ul>
+              <div class="d-flex justify-content-center flex-grow-1 align-items-center">
+                <h5 class="p-1 mb-0 pb-0">{{ apartment.title }}</h5>
               </div>
+
+              <!-- <h6></h6> -->
+
+              <p class="p-2" v-if="apartment.description">{{ apartment.description.substring(0, 100) }} <span
+                  class="fw-bold">...</span>
+              </p>
             </div>
           </router-link>
 
-          <router-link
-            v-else-if="store.nearestApartments.length != 0"
+          <router-link v-else-if="store.nearestApartments.length != 0"
             :to="{ name: 'apartments.show', params: { id: apartment.id } }"
             v-for="(apartment, i) in store.nearestApartments"
-            class="col-md-4 text-decoration-none"
-          >
-            <div class="card-container">
+            class="col-lg-3 col-md-4 col-sm-6 col-8 d-flex justify-content-center text-decoration-none">
+            <div class="card-container  d-flex flex-column">
               <div class="img-container h-50 w-100">
-                <img
-                  class="w-100 h-100"
-                  :src="'http://localhost:8000/storage/' + apartment.img_cover"
-                  alt="user"
-                />
+                <img class="w-100 h-100" :src="'http://localhost:8000/storage/' + apartment.img_cover" alt="user" />
               </div>
 
-              <h3>{{ apartment.title }}</h3>
-
-              <h6></h6>
-
-              <p v-if="apartment.description">{{ apartment.description }}</p>
-
-              <div class="skills">
-                <h6>Servizi</h6>
-
-                <ul>
-                  <li
-                    v-if="apartment.services"
-                    v-for="item in apartment.services"
-                  >
-                    {{ item.name }}
-                  </li>
-                </ul>
+              <div class="d-flex justify-content-center flex-grow-1 align-items-center">
+                <h5 class="p-1 mb-0 pb-0">{{ apartment.title }}</h5>
               </div>
+
+              <!-- <h6></h6> -->
+
+              <p v-if="apartment.description" class="p-2">{{ apartment.description.substring(0, 100) }} <span
+                  class="fw-bold">...</span></p>
             </div>
           </router-link>
 
