@@ -22,84 +22,86 @@ export default {
 
 <template>
   <TheHeader></TheHeader>
-  <div v-if="this.store.singleApartment.title" class="container mb-5 pb-5">
-    <h1 class="p-5 text-center">{{ store.singleApartment.title }}</h1>
+  <transition name="fade" appear>
+    <div v-if="this.store.singleApartment.title" class="container mb-5 pb-5">
+      <h1 class="p-5 text-center">{{ store.singleApartment.title }}</h1>
 
 
-    <div class="row g-4 pb-5">
-      <div class="col-12 col-md-6">
-        <h3>{{ store.singleApartment.address }}</h3>
-        <hr class="giallo" />
-        <p class="lead">
-          Il posto ha {{ store.singleApartment.n_rooms }} stanze,
-          {{ store.singleApartment.n_beds }} posti letto e
-          {{ store.singleApartment.n_bathrooms }} bagni. ({{
-            store.singleApartment.square_meters
-          }}
-          mq)
-        </p>
-        <div v-if="store.singleApartment.description" class="testo m-4">
-          <h4 class="giallo">Descrizione</h4>
-          <p>
-            {{ store.singleApartment.description }}
+      <div class="row g-4 pb-5">
+        <div class="col-12 col-md-6">
+          <h3>{{ store.singleApartment.address }}</h3>
+          <hr class="giallo" />
+          <p class="lead">
+            Il posto ha {{ store.singleApartment.n_rooms }} stanze,
+            {{ store.singleApartment.n_beds }} posti letto e
+            {{ store.singleApartment.n_bathrooms }} bagni. ({{
+              store.singleApartment.square_meters
+            }}
+            mq)
           </p>
-        </div>
+          <div v-if="store.singleApartment.description" class="testo m-4">
+            <h4 class="giallo">Descrizione</h4>
+            <p>
+              {{ store.singleApartment.description }}
+            </p>
+          </div>
 
-        <ul class="list-group w-100">
-          <li class="list-group-item service-title d-flex align-items-center">
-            <h6>Servizi</h6>
-          </li>
-          <li v-for="service in store.singleApartment.services" class="list-group-item d-flex align-items-center">
-            <i :class="service.icon"></i>
-            <span class="service-name">{{ service.name }}</span>
-          </li>
-        </ul>
-      </div>
-
-      <div class="col-12 col-md-6">
-        <div class="mb-3 d-flex justify-content-center">
-          <img v-if="store.singleApartment.imgLink" class="w-100" :src="backendURL + store.singleApartment.img_cover"
-            alt="Foto del posto" />
-          <img v-else :src="store.singleApartment.img_cover" alt="Foto del posto" />
-        </div>
-        <div class="d-block">
-          <ul class="list-group w-75 container">
+          <ul class="list-group w-100">
             <li class="list-group-item service-title d-flex align-items-center">
-              <h6>Messaggistica</h6>
+              <h6>Servizi</h6>
             </li>
-            <li class="list-group-item">
-              <span>Sei interessato all'appartamento?</span>
-              <br />
-              <br />
-              <span>Mettiti subito in contatto con il proprietario</span>
-              <router-link class="btn btn-warning m-2 message-link" :to="{ name: 'message' }">Messaggio</router-link>
+            <li v-for="service in store.singleApartment.services" class="list-group-item d-flex align-items-center">
+              <i :class="service.icon"></i>
+              <span class="service-name">{{ service.name }}</span>
             </li>
           </ul>
         </div>
-      </div>
-    </div>
 
-    <hr />
-
-    <div class="pt-5">
-      <Map v-if="store.singleApartment.latitude"
-        :appartment="[this.$route.params.id, this.store.singleApartment.address, this.store.singleApartment.latitude, store.singleApartment.longitude]">
-      </Map>
-    </div>
-
-  </div>
-  <div v-else class="container">
-    <div class="row py-4">
-      <div class="col-8 col-md-4 m-auto d-flex justify-content-center">
-        <div>
-          <img src="http://127.0.0.1:8000/not-existing.webp" alt="no trespassing citizen kane" class="img-fluid">
+        <div class="col-12 col-md-6">
+          <div class="mb-3 d-flex justify-content-center">
+            <img v-if="store.singleApartment.imgLink" class="w-100" :src="backendURL + store.singleApartment.img_cover"
+              alt="Foto del posto" />
+            <img v-else :src="store.singleApartment.img_cover" alt="Foto del posto" />
+          </div>
+          <div class="d-block">
+            <ul class="list-group w-75 container">
+              <li class="list-group-item service-title d-flex align-items-center">
+                <h6>Messaggistica</h6>
+              </li>
+              <li class="list-group-item">
+                <span>Sei interessato all'appartamento?</span>
+                <br />
+                <br />
+                <span>Mettiti subito in contatto con il proprietario</span>
+                <router-link class="btn btn-warning m-2 message-link" :to="{ name: 'message' }">Messaggio</router-link>
+              </li>
+            </ul>
+          </div>
         </div>
-
       </div>
+
+      <hr />
+
+      <div class="pt-5">
+        <Map v-if="store.singleApartment.latitude"
+          :appartment="[this.$route.params.id, this.store.singleApartment.address, this.store.singleApartment.latitude, store.singleApartment.longitude]">
+        </Map>
+      </div>
+
     </div>
-    <h2 class="text-center">L'appartamento non esiste</h2>
-  </div>
-</transition></template>
+    <div v-else class="container">
+      <div class="row py-4">
+        <div class="col-8 col-md-4 m-auto d-flex justify-content-center">
+          <div>
+            <img src="http://127.0.0.1:8000/not-existing.webp" alt="no trespassing citizen kane" class="img-fluid">
+          </div>
+
+        </div>
+      </div>
+      <h2 class="text-center">L'appartamento non esiste</h2>
+    </div>
+  </transition>
+</template>
 
 <style lang="scss" scoped>
 .jumbo {
