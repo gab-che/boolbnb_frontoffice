@@ -75,9 +75,9 @@ export default {
 
           <div class="col-12 col-md-6">
             <div class="mb-3 d-flex justify-content-center">
-              <img v-if="store.singleApartment.imgLink" class="w-100" :src="backendURL + store.singleApartment.img_cover"
-                alt="Foto del posto" />
-              <img v-else :src="store.singleApartment.img_cover" alt="Foto del posto" />
+              <img v-if="store.singleApartment.imgLink" class="w-100 img-fluid"
+                :src="backendURL + store.singleApartment.img_cover" alt="Foto del posto" />
+              <img v-else :src="store.singleApartment.img_cover" class="w-100 img-fluid" alt="Foto del posto" />
             </div>
             <div class="d-block">
               <ul class="list-group w-75 container">
