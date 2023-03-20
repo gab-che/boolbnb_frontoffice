@@ -32,7 +32,10 @@
                   l'indirizzo cliccandolo dal menù a tendina.
                 </p>
               </div>
-              <div class="addressList" v-if="searchField.length > 2">
+              <div
+                :class="'addressList ' + (isWrong ? 'd-none' : '')"
+                v-if="searchField.length > 2"
+              >
                 <router-link
                   :value="i"
                   v-for="(item, i) in searchData"
