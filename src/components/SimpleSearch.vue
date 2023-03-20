@@ -12,11 +12,19 @@
               </label>
             </div>
             <div class="offset-md-3 col-md-6 col-12 offset-sm-1 col-sm-10">
-              <input type="text" step="0.5" autocomplete="off" :class="
-                'w-100 d-block mt-2 ' +
-                (isWrong ? 'error ' : 'search ') +
-                (searchField.length > 2 ? 'searching' : 'search')
-              " name="address" v-model="searchField" @keyup="refreshSearch" />
+              <input
+                type="text"
+                step="0.5"
+                autocomplete="off"
+                :class="
+                  'w-100 d-block mt-2 ' +
+                  (isWrong ? 'error ' : 'search ') +
+                  (searchField.length > 2 ? 'searching' : 'search')
+                "
+                name="address"
+                v-model="searchField"
+                @keyup="refreshSearch"
+              />
               <div :class="'text-danger ' + (isWrong ? 'd-block' : 'd-none')">
                 <p>
                   C'è qualche problema con il tuo indirizzo, assicurati che non
@@ -24,11 +32,20 @@
                   l'indirizzo cliccandolo dal menù a tendina.
                 </p>
               </div>
-              <div :class="'addressList ' + (isWrong ? 'd-none' : '')" v-if="searchField.length > 2">
-                <router-link :value="i" v-for="(item, i) in searchData" :to="{
-                  name: 'Search',
-                  query: { city: item.address.freeformAddress },
-                }" class="list-group-item list-group-item-action" @click="choosenAddress(i)">
+              <div
+                :class="'addressList ' + (isWrong ? 'd-none' : '')"
+                v-if="searchField.length > 2"
+              >
+                <router-link
+                  :value="i"
+                  v-for="(item, i) in searchData"
+                  :to="{
+                    name: 'Search',
+                    query: { city: item.address.freeformAddress },
+                  }"
+                  class="list-group-item list-group-item-action"
+                  @click="choosenAddress(i)"
+                >
                   {{ item.address.freeformAddress }}
                 </router-link>
               </div>
@@ -119,7 +136,6 @@ export default {
   outline: 2px solid rgb(47, 34, 11);
   outline-offset: 2px;
 }
-
 .searching,
 .searching:focus-visible {
   border-top-right-radius: 12px;
@@ -138,13 +154,11 @@ export default {
   border: 2px solid rgb(208, 190, 25);
   transition: all 2s ease;
 }
-
 .error {
   border: 2px solid rgb(201, 38, 38);
   border-radius: 12px;
   display: block;
 }
-
 .error:focus {
   outline: 2px solid rgb(201, 38, 38);
 }
