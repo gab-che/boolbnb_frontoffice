@@ -27,47 +27,7 @@ export default {
         store.nearestApartments = momentanianApartments;
       }
     },
-    // fetchAdvancedSearchApartments() {
-    //   store.advancedApartments = [];
-    //   axios
-    //     .get(store.backendApartments, {
-    //       params: {
-    //         place: this.$route.query.city,
-    //         radius: store.advancedSearch.radius * 1000,
-    //         beds: store.advancedSearch.beds,
-    //         rooms: store.advancedSearch.rooms,
-    //         sqrMeters: store.advancedSearch.sqrMeters,
-    //         services: JSON.stringify(store.advancedSearch.services),
-    //       },
-    //     })
-    //     .then((resp) => {
-    //       const finalList = [];
 
-
-    //       resp.data.forEach(element => {
-    //         if (element.promotions.length && element.promotions[0].id === 3) {
-    //           finalList.push(element)
-    //         }
-    //       });
-    //       resp.data.forEach(element => {
-    //         if (element.promotions.length && element.promotions[0].id === 2) {
-    //           finalList.push(element)
-    //         }
-    //       });
-    //       resp.data.forEach(element => {
-    //         if (element.promotions.length && element.promotions[0].id === 1) {
-    //           finalList.push(element)
-    //         }
-    //       });
-    //       resp.data.forEach(element => {
-    //         if (!element.promotions.length) {
-    //           finalList.push(element);
-    //         }
-    //       })
-    //       store.advancedApartments = finalList;
-    //       console.log(store.advancedApartments);
-    //     });
-    // }
   },
   computed: {},
   created() {
@@ -107,7 +67,9 @@ export default {
             <div :class="apartment.promotions.length ? 'border border-2' : ''"
               class="card-container border-primary d-flex flex-grow-1 flex-column">
               <div class="img-container h-50 w-100">
-                <img class="w-100 h-100" :src="'http://localhost:8000/storage/' + apartment.img_cover" alt="user" />
+                <img v-if="apartment.img_cover.includes('cover_img')" class="w-100 h-100"
+                  :src="'http://localhost:8000/storage/' + apartment.img_cover" alt="user" />
+                <img v-else class="w-100 h-100" :src="apartment.img_cover" alt="user" />
               </div>
               <div class="d-flex justify-content-center flex-grow-1 align-items-center">
                 <h5 class="p-1 mb-0 pb-0">{{ apartment.title }}</h5>
@@ -128,7 +90,9 @@ export default {
               class="card-container border-primary d-flex flex-column">
 
               <div class="img-container h-50 w-100">
-                <img class="w-100 h-100" :src="'http://localhost:8000/storage/' + apartment.img_cover" alt="user" />
+                <img v-if="apartment.img_cover.includes('cover_img')" class="w-100 h-100"
+                  :src="'http://localhost:8000/storage/' + apartment.img_cover" alt="user" />
+                <img v-else class="w-100 h-100" :src="apartment.img_cover" alt="user" />
               </div>
 
               <div class="d-flex justify-content-center flex-grow-1 align-items-center">

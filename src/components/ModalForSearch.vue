@@ -98,49 +98,49 @@ export default {
           <button @click="fetchAdvancedSearchApartments" class="btn btn-secondary">invia</button>
           <div class="kilometers-input">
             <div>
-              <label for="customRange1" class="form-label">Example range</label>
+              <label for="customRange1" class="form-label">N. km :
+                <span v-if="store.advancedSearch.radius">{{ store.advancedSearch.radius }}</span>
+                <span v-else>20</span>
+              </label>
               <input type="range" step="5" min="5" max="50" class="form-range" id="customRange1" name="range"
                 v-model="store.advancedSearch.radius" />
             </div>
             <div>
-              <div>n kilometri:</div>
-              <div v-if="store.advancedSearch.radius">{{ store.advancedSearch.radius }}</div>
-              <div v-else>20</div>
+
+
             </div>
           </div>
-          <div class="numbers-container">
-            <div class="row">
-              <div class="col-3">
-                <label class="form-label">Numero di stanze *</label>
-                <input type="number" step="1" min="0" max="255" v-model.lazy="store.advancedSearch.rooms"
-                  class="form-control mx-auto rounded-5" />
-              </div>
-              <div class="col-3">
-                <label class="form-label">Numero di letti *</label>
-                <input type="number" step="1" min="0" max="255" v-model.lazy="store.advancedSearch.beds"
-                  class="form-control mx-auto rounded-5" />
-              </div>
+          <div
+            class="mb-3 numbers-container justify-content-center w-100 row flex-md-row flex-column  align-items-center">
+            <div class="col-md-4 col justify-content-between d-flex flex-column">
+              <label class="form-label flex-grow-1">Numero stanze </label>
+              <input type="number" step="1" min="0" max="255" v-model.lazy="store.advancedSearch.rooms"
+                class="form-control mx-auto rounded-5" />
+            </div>
+            <div class="col-md-4 col justify-content-between d-flex flex-column">
+              <label class="form-label flex-grow-1">Numero letti </label>
+              <input type="number" step="1" min="0" max="255" v-model.lazy="store.advancedSearch.beds"
+                class="form-control mx-auto rounded-5" />
+            </div>
 
-              <div class="col-3">
-                <label class="form-label">Numero di metri quadri *</label>
-                <input type="number" step="0.5" min="30" max="300000" v-model.lazy="store.advancedSearch.sqrMeters"
-                  class="form-control mx-auto rounded-5" />
-              </div>
+            <div class="col-md-4 col  justify-content-between d-flex flex-column">
+              <label class="form-label flex-grow-1 flex-grow-1 ">Numero metri quadrati </label>
+              <input type="number" step="0.5" min="30" max="300000" v-model.lazy="store.advancedSearch.sqrMeters"
+                class="form-control mx-auto rounded-5" />
             </div>
           </div>
           <div class="services-modal-container">
             <div class="row g-2">
-              <div v-for="(service, i) in store.allServices" :key="i"
-                class="col-sm-12 col-md-6 col-lg-3 px-0 d-flex justify-content-start">
-                <div class="m-0 form-check form-switch d-flex justify-content-center align-items-center">
-                  <input class="form-check-input" type="checkbox" :id="'serviceCheckbox_' + { i }"
+              <div v-for="(service, i) in store.allServices" class="col-6 col-sm-4 px-0 d-flex justify-content-start">
+                <div class="m-0 form-check d-flex justify-content-center align-items-center">
+                  <input class="form-check-input flex-shrink-0" type="checkbox" :id="'serviceCheckbox_' + i"
                     v-model="store.advancedSearch.services" :value="service.id" name="services[]" />
-                  <label class="form-check-label text-start" :for="'serviceCheckbox_' + { i }">
+                  <label class="form-check-label text-start" :for="'serviceCheckbox_' + i">
                     <div class="d-flex justify-content-center align-items-center">
                       <div class="icon-width">
                         <i :class="service.icon + ' text-secondary px-3'"></i>
                       </div>
-                      <div class="">{{ service.name }}</div>
+                      <div class="d-none d-md-block">{{ service.name }}</div>
                     </div>
                   </label>
                 </div>
@@ -164,17 +164,21 @@ export default {
 }
 
 .my-modal {
+  display: flex;
+  width: 100%;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  max-width: 1000px;
   position: fixed;
   z-index: 200;
-  width: fit-content;
-  top: 25%;
   left: 50%;
   padding: 20px;
   transform: translate(-50%, 0);
   filter: drop-shadow(8px 8px 16px rgb(74, 48, 15));
 
   .my-modal-content {
-    background-color: rgb(197, 175, 67);
+    background-color: #ffd579;
     border-radius: 16px;
     padding: 16px;
 
