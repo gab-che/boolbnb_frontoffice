@@ -2,9 +2,10 @@
 import { store, fetchNearestApartments, fetchServices } from "../store";
 import axios from "axios";
 // import ModalForSearch from "../components/ModalForSearch.Vue";
+import SimpleSearch from "../components/SimpleSearch.vue";
 import TheHeader from "../components/TheHeader.vue";
 export default {
-  components: { TheHeader },
+  components: { TheHeader, SimpleSearch },
   name: "Search",
   data() {
     return {
@@ -27,7 +28,6 @@ export default {
         store.nearestApartments = momentanianApartments;
       }
     },
-
   },
   computed: {},
   created() {
@@ -49,8 +49,10 @@ export default {
     <div class="whole-page-overlay d-block" id="whole_page_loader">
       <div class="img-container w-100 h-100">
         <div class="cover"></div>
-        <img class="center-loader w-100 h-100 img-fluid"
-          src="https://cdn.dribbble.com/users/729829/screenshots/3499449/media/fb22fc6c15045b2a7e5bb6329965e574.gif" />
+        <img
+          class="center-loader w-100 h-100 img-fluid"
+          src="https://cdn.dribbble.com/users/729829/screenshots/3499449/media/fb22fc6c15045b2a7e5bb6329965e574.gif"
+        />
       </div>
     </div>
   </div>
@@ -59,52 +61,87 @@ export default {
       <TheHeader></TheHeader>
 
       <div class="container">
+        <SimpleSearch></SimpleSearch>
         <div class="apartment g-3 py-5 row justify-content-center">
-          <router-link v-if="store.advancedApartments.length != 0"
+          <router-link
+            v-if="store.advancedApartments.length != 0"
             :to="{ name: 'apartments.show', params: { id: apartment.id } }"
             v-for="(apartment, i) in store.advancedApartments"
-            class="col-lg-3 col-md-4 col-sm-6 col-8 d-flex justify-content-center text-decoration-none">
-            <div :class="apartment.promotions.length ? 'border border-2' : ''"
-              class="card-container border-primary d-flex flex-grow-1 flex-column">
+            class="col-lg-3 col-md-4 col-sm-6 col-8 d-flex justify-content-center text-decoration-none"
+          >
+            <div
+              :class="apartment.promotions.length ? 'border border-2' : ''"
+              class="card-container border-primary d-flex flex-grow-1 flex-column"
+            >
               <div class="img-container h-50 w-100">
-                <img v-if="apartment.img_cover.includes('cover_img')" class="w-100 h-100"
-                  :src="'http://localhost:8000/storage/' + apartment.img_cover" alt="user" />
-                <img v-else class="w-100 h-100" :src="apartment.img_cover" alt="user" />
-                <div v-if="apartment.promotions.length" class="banner">In evidenza</div>
+                <img
+                  v-if="apartment.img_cover.includes('cover_img')"
+                  class="w-100 h-100"
+                  :src="'http://localhost:8000/storage/' + apartment.img_cover"
+                  alt="user"
+                />
+                <img
+                  v-else
+                  class="w-100 h-100"
+                  :src="apartment.img_cover"
+                  alt="user"
+                />
+                <div v-if="apartment.promotions.length" class="banner">
+                  In evidenza
+                </div>
               </div>
 
-              <div class="d-flex justify-content-center flex-grow-1 align-items-center">
+              <div
+                class="d-flex justify-content-center flex-grow-1 align-items-center"
+              >
                 <h5 class="p-1 mb-0 pb-0">{{ apartment.title }}</h5>
               </div>
 
-
-              <p class="p-2" v-if="apartment.description">{{ apartment.description.substring(0, 100) }} <span
-                  class="fw-bold">...</span>
+              <p class="p-2" v-if="apartment.description">
+                {{ apartment.description.substring(0, 100) }}
+                <span class="fw-bold">...</span>
               </p>
             </div>
           </router-link>
 
-          <router-link v-else-if="store.nearestApartments.length != 0"
+          <router-link
+            v-else-if="store.nearestApartments.length != 0"
             :to="{ name: 'apartments.show', params: { id: apartment.id } }"
             v-for="(apartment, i) in store.nearestApartments"
-            class="col-lg-3 col-md-4 col-sm-6 col-8 d-flex justify-content-center text-decoration-none">
-            <div :class="apartment.promotions.length ? 'border border-2' : ''"
-              class="card-container border-primary d-flex flex-column">
-
+            class="col-lg-3 col-md-4 col-sm-6 col-8 d-flex justify-content-center text-decoration-none"
+          >
+            <div
+              :class="apartment.promotions.length ? 'border border-2' : ''"
+              class="card-container border-primary d-flex flex-column"
+            >
               <div class="img-container h-50 w-100">
-                <img v-if="apartment.img_cover.includes('cover_img')" class="w-100 h-100"
-                  :src="'http://localhost:8000/storage/' + apartment.img_cover" alt="user" />
-                <img v-else class="w-100 h-100" :src="apartment.img_cover" alt="user" />
-                <div v-if="apartment.promotions.length" class="banner">In evidenza</div>
-
+                <img
+                  v-if="apartment.img_cover.includes('cover_img')"
+                  class="w-100 h-100"
+                  :src="'http://localhost:8000/storage/' + apartment.img_cover"
+                  alt="user"
+                />
+                <img
+                  v-else
+                  class="w-100 h-100"
+                  :src="apartment.img_cover"
+                  alt="user"
+                />
+                <div v-if="apartment.promotions.length" class="banner">
+                  In evidenza
+                </div>
               </div>
 
-              <div class="d-flex justify-content-center flex-grow-1 align-items-center">
+              <div
+                class="d-flex justify-content-center flex-grow-1 align-items-center"
+              >
                 <h5 class="p-1 mb-0 pb-0">{{ apartment.title }}</h5>
               </div>
 
-              <p v-if="apartment.description" class="p-2">{{ apartment.description.substring(0, 100) }} <span
-                  class="fw-bold">...</span></p>
+              <p v-if="apartment.description" class="p-2">
+                {{ apartment.description.substring(0, 100) }}
+                <span class="fw-bold">...</span>
+              </p>
             </div>
           </router-link>
 
