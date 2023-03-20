@@ -110,23 +110,6 @@ export async function fetchNearestApartments(cityToSearch) {
     });
 }
 
-export function fetchAdvancedSearchApartments() {
-  axios
-    .get(store.backendApartments, {
-      params: {
-        place: this.$route.query.city,
-        radius: store.advancedSearch.radius * 1000,
-        beds: store.advancedSearch.beds,
-        rooms: store.advancedSearch.rooms,
-        sqrMeters: store.advancedSearch.sqrMeters,
-        services: JSON.stringify(store.advancedSearch.services),
-      },
-    })
-    .then((resp) => {
-
-      store.advancedApartments = resp.data;
-    });
-}
 export async function fetchServices() {
   await axios
     .get(store.backendservices, {})

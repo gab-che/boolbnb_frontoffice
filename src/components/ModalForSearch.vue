@@ -1,6 +1,6 @@
 <script>
 import axios from "axios";
-import { store, fetchNearestApartments, fetchServices, fetchAdvancedSearchApartments } from "../store";
+import { store, fetchNearestApartments, fetchServices } from "../store";
 export default {
   data() {
     return {
@@ -26,7 +26,31 @@ export default {
           },
         })
         .then((resp) => {
-          store.advancedApartments = resp.data;
+          const finalList = [];
+
+
+          resp.data.forEach(element => {
+            if (element.promotions.length && element.promotions[0].id === 3) {
+              finalList.push(element)
+            }
+          });
+          resp.data.forEach(element => {
+            if (element.promotions.length && element.promotions[0].id === 2) {
+              finalList.push(element)
+            }
+          });
+          resp.data.forEach(element => {
+            if (element.promotions.length && element.promotions[0].id === 1) {
+              finalList.push(element)
+            }
+          });
+          resp.data.forEach(element => {
+            if (!element.promotions.length) {
+              finalList.push(element);
+            }
+          })
+          store.advancedApartments = finalList;
+
           store.nearestApartments = [];
           this.showModal = false
         });
@@ -53,8 +77,6 @@ export default {
   },
   mounted() {
     fetchServices();
-    // fetchNearestApartments("milan");
-    // this.loadStorage();
   },
   beforeUnmount() {
     this.saveStorage();
