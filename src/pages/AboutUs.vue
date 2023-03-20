@@ -31,7 +31,7 @@
                         ></i>
                       </div>
                     </button>
-                    <div :class="'transition-container hide ' + me.name">
+                    <div :class="'transition-container hide d-none ' + me.name">
                       <div class="link-container">
                         <a class="text-warning" :href="me.gitLink"
                           ><div class="icon-container">
@@ -254,6 +254,8 @@ export default {
   methods: {
     showLinks(nome) {
       const toShow = document.querySelector("." + nome);
+
+      toShow.classList.remove("d-none");
       toShow.classList.toggle("hide");
       toShow.classList.toggle("show");
     },
