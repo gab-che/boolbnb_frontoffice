@@ -70,7 +70,9 @@ export default {
                 <img v-if="apartment.img_cover.includes('cover_img')" class="w-100 h-100"
                   :src="'http://localhost:8000/storage/' + apartment.img_cover" alt="user" />
                 <img v-else class="w-100 h-100" :src="apartment.img_cover" alt="user" />
+                <div v-if="apartment.promotions.length" class="banner">In evidenza</div>
               </div>
+
               <div class="d-flex justify-content-center flex-grow-1 align-items-center">
                 <h5 class="p-1 mb-0 pb-0">{{ apartment.title }}</h5>
               </div>
@@ -93,6 +95,8 @@ export default {
                 <img v-if="apartment.img_cover.includes('cover_img')" class="w-100 h-100"
                   :src="'http://localhost:8000/storage/' + apartment.img_cover" alt="user" />
                 <img v-else class="w-100 h-100" :src="apartment.img_cover" alt="user" />
+                <div v-if="apartment.promotions.length" class="banner">In evidenza</div>
+
               </div>
 
               <div class="d-flex justify-content-center flex-grow-1 align-items-center">
@@ -116,6 +120,7 @@ export default {
 <style lang="scss" scoped>
 .img-container {
   width: 300px;
+  position: relative;
 }
 
 .all-container {
@@ -134,5 +139,37 @@ export default {
       flex-grow: 1;
     }
   }
+}
+
+@media screen and (min-width: 720px) {
+  .banner {
+    top: 48px;
+    right: -96px;
+    padding: 2px 96px;
+    transform: rotate(45deg);
+    width: fit-content;
+  }
+}
+
+@media screen and (min-width: 0px) and (max-width: 719.9px) {
+  .banner {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 100%;
+    padding: 2px;
+  }
+}
+
+.banner {
+  text-align: center;
+  position: absolute;
+  background-color: rgb(244, 194, 30);
+  color: rgb(53, 34, 12);
+  border: 2px dashed rgb(53, 34, 12);
+  font-weight: 600;
+  border-top-right-radius: 12px;
+  border-top-left-radius: 12px;
+  transition: all 0.5s ease;
 }
 </style>

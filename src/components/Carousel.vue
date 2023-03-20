@@ -16,7 +16,6 @@
                 :src="'http://localhost:8000/storage/' + apartment.img_cover" alt="user" />
               <img v-else class="w-100 h-100" :src="apartment.img_cover" alt="user" />
               <div class="banner">Dai un'occhiata!</div>
-              <div class="banner">Dai un'occhiata!</div>
             </div>
           </router-link>
           <div class="carousel-caption">
