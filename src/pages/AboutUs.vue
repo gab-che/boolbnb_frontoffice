@@ -3,19 +3,23 @@
   <transition name="fade" appear>
     <div class="container-fluid container-md px-5 p-md-0 reduce">
       <div class="row my-5" v-for="(me, i) in us" :key="i">
-        <div class="col-12 shadow-lg px-0">
+        <div class="col-12 shadow-lg px-0 bg-brown">
           <div class="row">
             <div class="col-12 col-md-4 col-lg-3">
               <div class="img-container shadow-lg">
-                <img v-bind:src="me.img" class="card-img-top" alt="..." />
+                <img v-bind:src="me.img" alt="..." />
               </div>
             </div>
-            <div class="col-12 col-md-8 col-lg-9">
+            <div class="col-12 col-md-8 col-lg-9 overflow-hidden">
               <div class="row align-items-center h-100 px-2 py-4">
                 <div class="col-12">
-                  <h5 class="fs-2">
-                    <span class="text-warning">{{ me.name }}</span>
-                    {{ me.surname }}
+                  <h5 class="fs-2 rounded-3 overflow-hidden d-inline-block">
+                    <span class="text-warning bg-brown px-2">{{
+                      me.name
+                    }}</span>
+                    <span class="text-brown bg-warning px-2">{{
+                      me.surname
+                    }}</span>
                   </h5>
                 </div>
 
@@ -26,30 +30,21 @@
                       class="btn btn-dark rounded-circle"
                     >
                       <div class="icon-container">
-                        <i
-                          class="fa-solid fa-share-nodes ratio=1 text-warning"
-                        ></i>
+                        <i class="fa-solid fa-share-nodes ratio=1"></i>
                       </div>
                     </button>
                     <div :class="'transition-container hide d-none ' + me.name">
                       <div class="link-container">
-                        <a class="text-warning" :href="me.gitLink"
+                        <a class="" :href="me.gitLink"
                           ><div class="icon-container">
                             <i class="fa-brands fa-github"></i></div
                         ></a>
                       </div>
 
                       <div class="link-container">
-                        <a :href="me.linkedIn" class="text-warning"
+                        <a :href="me.linkedIn" class=""
                           ><div class="icon-container">
                             <i class="fa-brands fa-linkedin"></i></div
-                        ></a>
-                      </div>
-
-                      <div class="link-container">
-                        <a :href="me.gmail" class="text-warning"
-                          ><div class="icon-container">
-                            <i class="fa-solid fa-envelope"></i></div
                         ></a>
                       </div>
                     </div>
@@ -64,6 +59,16 @@
   </transition>
 </template>
 <style lang="scss" scoped>
+.bg-brown {
+  background-color: rgba(45, 28, 9, 0.35);
+}
+.text-brown {
+  color: rgba(45, 28, 9, 0.85);
+}
+i {
+  color: rgb(244, 194, 30);
+  margin: 4px;
+}
 .col-12.col-md-8.col-lg-9 {
   transition: all 0.5s ease;
 }
@@ -95,6 +100,13 @@
 }
 .img-container {
   overflow: hidden;
+  height: 100%;
+  img {
+    height: 100%;
+    width: 100%;
+    display: block;
+    object-fit: cover;
+  }
 }
 .button-container {
   position: relative;
@@ -105,7 +117,7 @@
 
   .transition-container {
     margin-left: 16px;
-    left: 44px;
+    left: 64px;
     top: 0px;
     position: absolute;
     align-items: center;
@@ -138,7 +150,7 @@
   animation: links-out 0.7s ease;
 }
 .icon-container {
-  padding: 8px;
+  padding: 12px;
   background-color: rgb(45, 28, 9);
   border-radius: 50%;
   overflow: hidden;
@@ -217,42 +229,39 @@ export default {
         {
           name: "Lucio",
           surname: "Bo",
-          img: "https://picsum.photos/600/400",
-          gitLink: "#",
-          linkedIn: "#",
-          gmail: "#",
+          img: "../../Lucio.jpg",
+          gitLink: "https://github.com/gab-che",
+          linkedIn: "https://www.linkedin.com/in/lucio-bo/",
         },
         {
           name: "Gabriella",
           surname: "Chessa",
-          img: "https://picsum.photos/600/400",
-          gitLink: "#",
-          linkedIn: "#",
-          gmail: "#",
+          img: "../../Gab.jpeg",
+          gitLink: "https://github.com/gab-che",
+          linkedIn: "https://www.linkedin.com/in/gabriella-chessa-97555b1b1/",
         },
         {
           name: "Marco",
           surname: "Agosta",
-          img: "https://picsum.photos/600/400",
-          gitLink: "#",
-          linkedIn: "#",
-          gmail: "#",
+          img: "../../Marco.jpeg",
+          gitLink: "https://github.com/MarcoAgosta",
+          linkedIn: "https://www.linkedin.com/in/marco-agosta-0525131a3/",
         },
         {
           name: "Luca",
           surname: "Radio",
-          img: "https://picsum.photos/600/400",
-          gitLink: "#",
-          linkedIn: "#",
-          gmail: "#",
+          img: "../../Luca.jpg",
+          gitLink: "https://github.com/LucaRadio",
+          linkedIn:
+            "https://www.linkedin.com/in/calogero-luca-radio-26a781267/",
         },
         {
           name: "Massimiliano",
           surname: "Muscolino",
-          img: "https://picsum.photos/600/400",
-          gitLink: "#",
-          linkedIn: "#",
-          gmail: "#",
+          img: "../../IO.jpeg",
+          gitLink: "https://github.com/Ciaowilly3",
+          linkedIn:
+            "https://www.linkedin.com/in/massimiliano-muscolino-331807267/",
         },
       ],
     };
