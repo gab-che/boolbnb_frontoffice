@@ -76,6 +76,7 @@ export function fetchSponsoredApartments() {
  */
 export async function fetchNearestApartments(cityToSearch) {
   store.nearestApartments = [];
+  store.advancedApartments=[];
   await axios
     .get(store.backendApartments, {
       params: {
